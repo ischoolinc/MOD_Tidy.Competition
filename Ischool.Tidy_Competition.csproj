@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{679A9905-51D6-4C73-B95A-AB49095B6C00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ischool.Tidy_Competition</RootNamespace>
+    <AssemblyName>Ischool.Tidy_Competition</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Cells_201402, Version=7.7.1.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Aspose.Cells_201402.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Configuration, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.DocumentValidator, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.DocumentValidator.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Import, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Import.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CefSharp, Version=57.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\CefSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CefSharp.Core, Version=57.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\CefSharp.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CefSharp.WinForms, Version=57.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\CefSharp.WinForms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA, Version=2.5.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Authentication, Version=1.9.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Authentication.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Data, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.LogAgent, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.LogAgent.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Login, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Login.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Permission, Version=1.2.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Permission.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Presentation, Version=1.1.0.19, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.UDT, Version=1.0.2.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\FISCA.UDT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Data, Version=2.0.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\K12.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAO\Actor.cs" />
+    <Compile Include="DAO\Admin.cs" />
+    <Compile Include="DAO\DeductionItem.cs" />
+    <Compile Include="DAO\DeductionStandard.cs" />
+    <Compile Include="DAO\PcBelong.cs" />
+    <Compile Include="DAO\Period.cs" />
+    <Compile Include="DAO\Role.cs" />
+    <Compile Include="DAO\Scorer.cs" />
+    <Compile Include="DAO\ScoreSheet.cs" />
+    <Compile Include="Permissions.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Admin\frmAddAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Admin\frmAddAdmin.Designer.cs">
+      <DependentUpon>frmAddAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Admin\frmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Admin\frmAdmin.Designer.cs">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Aea\frmEditArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Aea\frmEditArea.Designer.cs">
+      <DependentUpon>frmEditArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Deduction\frmDeduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Deduction\frmDeduction.Designer.cs">
+      <DependentUpon>frmDeduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\FormMode.cs" />
+    <Compile Include="Ribbon\PcBelong\frmPcBelong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\PcBelong\frmPcBelong.Designer.cs">
+      <DependentUpon>frmPcBelong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Period\frmPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Period\frmPeriod.Designer.cs">
+      <DependentUpon>frmPeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Place\frmPlace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Place\frmPlace.Designer.cs">
+      <DependentUpon>frmPlace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\ScoreRule\frmEditScoreRule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\ScoreRule\frmEditScoreRule.Designer.cs">
+      <DependentUpon>frmEditScoreRule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\ScoreRule\frmScoreRule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\ScoreRule\frmScoreRule.Designer.cs">
+      <DependentUpon>frmScoreRule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Scorer\frmAddScorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Scorer\frmAddScorer.Designer.cs">
+      <DependentUpon>frmAddScorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Scorer\frmScorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Scorer\frmScorer.Designer.cs">
+      <DependentUpon>frmScorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\ScoreSheet\frmAddScoreSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\ScoreSheet\frmAddScoreSheet.Designer.cs">
+      <DependentUpon>frmAddScoreSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\ScoreSheet\frmEditScoreSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\ScoreSheet\frmEditScoreSheet.Designer.cs">
+      <DependentUpon>frmEditScoreSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\ScoreSheet\frmScoreSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\ScoreSheet\frmScoreSheet.Designer.cs">
+      <DependentUpon>frmScoreSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TidyCompetitionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UDT\Admin.cs" />
+    <Compile Include="UDT\Area.cs" />
+    <Compile Include="UDT\DeDuctionItem.cs" />
+    <Compile Include="UDT\DeDuctionStandard.cs" />
+    <Compile Include="UDT\PcBelong.cs" />
+    <Compile Include="UDT\Period.cs" />
+    <Compile Include="UDT\Place.cs" />
+    <Compile Include="UDT\Scorer.cs" />
+    <Compile Include="UDT\ScoreRule.cs" />
+    <Compile Include="UDT\ScoreSheet.cs" />
+    <Compile Include="UDT\SnapshotScoreSheet.cs" />
+    <Compile Include="UDT\WeeklyRank.cs" />
+    <Compile Include="UDT\WeeklyStats.cs" />
+    <Compile Include="UDT\WorkShift.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Library\Aspose.Cells.dll" />
+    <Content Include="Library\Aspose.Cells_201402.dll" />
+    <Content Include="Library\Campus.Configuration.dll" />
+    <Content Include="Library\Campus.DocumentValidator.dll" />
+    <Content Include="Library\Campus.Import.dll" />
+    <Content Include="Library\Campus.IRewrite.Interface.dll" />
+    <Content Include="Library\Campus.Report.dll" />
+    <Content Include="Library\Campus.Windows.dll" />
+    <Content Include="Library\CefSharp.Core.dll" />
+    <Content Include="Library\CefSharp.dll" />
+    <Content Include="Library\CefSharp.WinForms.dll" />
+    <Content Include="Library\Customization.Tagging.dll" />
+    <Content Include="Library\DevComponents.DotNetBar2.dll" />
+    <Content Include="Library\FISCA.Authentication.dll" />
+    <Content Include="Library\FISCA.Core.dll" />
+    <Content Include="Library\FISCA.Data.dll" />
+    <Content Include="Library\FISCA.Deployment.Administration.dll" />
+    <Content Include="Library\FISCA.Deployment.dll" />
+    <Content Include="Library\FISCA.dll" />
+    <Content Include="Library\FISCA.DSAClient.dll" />
+    <Content Include="Library\FISCA.DSAUtil.dll" />
+    <Content Include="Library\FISCA.LogAgent.dll" />
+    <Content Include="Library\FISCA.Login.dll" />
+    <Content Include="Library\FISCA.Permission.dll" />
+    <Content Include="Library\FISCA.Presentation.dll" />
+    <Content Include="Library\FISCA.Synchronization.dll" />
+    <Content Include="Library\FISCA.UDT.dll" />
+    <Content Include="Library\K12.Data.dll" />
+    <Content Include="Library\SmartSchool.API.PlugIn.dll" />
+    <Content Include="Library\SmartSchool.Customization.Data.dll" />
+    <Content Include="Library\SmartSchool.Customization.PlugIn.dll" />
+    <Content Include="Library\SmartSchool.ErrorReporting.dll" />
+    <None Include="Resources\bank_config_128.png" />
+    <None Include="Resources\presentation_a_config_64.png" />
+    <None Include="Resources\virtualcurse_config_64.png" />
+    <None Include="Resources\scientific_calculator_config_64.png" />
+    <None Include="Resources\schedule_config_64.png" />
+    <None Include="Resources\foreign_language_config_64.png" />
+    <None Include="Resources\blacklist_zoom_128.png" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\sandglass_unlock_64.png" />
+    <None Include="Resources\Report.png" />
+    <None Include="Resources\network_lock_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Admin\frmAddAdmin.resx">
+      <DependentUpon>frmAddAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Admin\frmAdmin.resx">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Aea\frmEditArea.resx">
+      <DependentUpon>frmEditArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Deduction\frmDeduction.resx">
+      <DependentUpon>frmDeduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\PcBelong\frmPcBelong.resx">
+      <DependentUpon>frmPcBelong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Period\frmPeriod.resx">
+      <DependentUpon>frmPeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Place\frmPlace.resx">
+      <DependentUpon>frmPlace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\ScoreRule\frmEditScoreRule.resx">
+      <DependentUpon>frmEditScoreRule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\ScoreRule\frmScoreRule.resx">
+      <DependentUpon>frmScoreRule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Scorer\frmAddScorer.resx">
+      <DependentUpon>frmAddScorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Scorer\frmScorer.resx">
+      <DependentUpon>frmScorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\ScoreSheet\frmAddScoreSheet.resx">
+      <DependentUpon>frmAddScoreSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\ScoreSheet\frmEditScoreSheet.resx">
+      <DependentUpon>frmEditScoreSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\ScoreSheet\frmScoreSheet.resx">
+      <DependentUpon>frmScoreSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TidyCompetitionPanel.resx">
+      <DependentUpon>TidyCompetitionPanel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
