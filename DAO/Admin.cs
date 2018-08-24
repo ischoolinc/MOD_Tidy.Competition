@@ -50,10 +50,10 @@ WHERE
                 sql = string.Format(@"
 WITH data_row AS(
     SELECT
-        {0}::TEXT AS account
-        , {1}::TEXT AS ref_teacher_id
-        , {2}::TIMESTAMP AS create_time
-        , {3}::TEXT AS created_by
+        '{0}'::TEXT AS account
+        , {1}::BIGINT AS ref_teacher_id
+        , '{2}'::TIMESTAMP AS create_time
+        , '{3}'::TEXT AS created_by
 ) , insert_admin AS(
     INSERT INTO $ischool.tidy_competition.admin(
         account
@@ -73,15 +73,17 @@ WITH data_row AS(
         login_name
         , sys_admin
         , account_type
+        , password
     )
     SELECT
         account
         , '0'
         , 'greening'
+        , '1234'
     FROM
         data_row
     RETURNING *
-) , insert_lr_belong AS(
+) 
     INSERT INTO _lr_belong(
         _login_id
         , _role_id
@@ -91,7 +93,7 @@ WITH data_row AS(
         , {4}
     FROM
         insert_login
-)
+
                 ", account, teacherID, createTime, createdBy, roleID);
                 #endregion
             }

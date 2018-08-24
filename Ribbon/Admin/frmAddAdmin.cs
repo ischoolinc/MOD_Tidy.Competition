@@ -71,17 +71,19 @@ WHERE
 
         private void dataGridViewX1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = dataGridViewX1.SelectedCells[0].RowIndex;
-            int colIndex = dataGridViewX1.SelectedCells[0].ColumnIndex;
-            string teacherName = "" + dataGridViewX1.Rows[rowIndex].Cells[0].Value;
-            string account = "" + dataGridViewX1.Rows[rowIndex].Cells[3].Value;
-            string teacherID = "" + dataGridViewX1.Rows[rowIndex].Tag;
-            string roleID = DAO.Role.GetRoleID();
-            string loginID = DAO.Actor.Instance().GetLoginIDByAccount(account); // 有資料 or ""
-            string userAccount = DAO.Actor.Instance().GetUserAccount();
+            //int rowIndex = dataGridViewX1.SelectedCells[0].RowIndex;
+            //int colIndex = dataGridViewX1.SelectedCells[0].ColumnIndex;
+            
 
-            if (rowIndex > -1 && colIndex == 5)
+            if (e.RowIndex > -1 && e.ColumnIndex == 5)
             {
+                string teacherName = "" + dataGridViewX1.Rows[e.RowIndex].Cells[0].Value;
+                string account = "" + dataGridViewX1.Rows[e.RowIndex].Cells[3].Value;
+                string teacherID = "" + dataGridViewX1.Rows[e.RowIndex].Tag;
+                string roleID = DAO.Role.GetRoleID();
+                string loginID = DAO.Actor.Instance().GetLoginIDByAccount(account); // 有資料 or ""
+                string userAccount = DAO.Actor.Instance().GetUserAccount();
+
                 if (string.IsNullOrEmpty(account))
                 {
                     MsgBox.Show(string.Format("{0}教師沒有登入帳號，無法指定為秩序競賽管理員!",teacherName));

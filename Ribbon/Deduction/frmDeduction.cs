@@ -251,7 +251,7 @@ SELECT
             #region 資料儲存
             try
             {
-                DAO.DeductionItem.SaveData(string.Join("UNION ALL", listDataRow));
+                DAO.DeductionItem.SaveData(string.Join("UNION ALL", listDataRow),this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID);
                 MsgBox.Show("資料儲存成功!");
                 string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
                 ReloadItemDgv(areaID);
@@ -320,7 +320,7 @@ SELECT
             #region 資料儲存
             try
             {
-                DAO.DeductionStandard.SaveData(string.Join("UNION ALL", listDataRow));
+                DAO.DeductionStandard.SaveData(string.Join("UNION ALL", listDataRow),this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID);
                 MsgBox.Show("資料儲存成功!");
                 string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
                 ReloadStandardDgv(areaID);

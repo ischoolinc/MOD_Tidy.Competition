@@ -10,7 +10,7 @@ namespace Ischool.Tidy_Competition.DAO
 {
     class DeductionItem
     {
-        public static void SaveData(string dataRow)
+        public static void SaveData(string dataRow,string areaID)
         {
             #region SQL
             string sql = string.Format(@"
@@ -63,8 +63,9 @@ WHERE
                 ON data_row.uid = item.uid
         WHERE
             data_row.uid IS NULL
+            AND item.ref_area_id = {1}
     )
-            ", dataRow);
+            ", dataRow,areaID);
             #endregion
 
             UpdateHelper up = new UpdateHelper();

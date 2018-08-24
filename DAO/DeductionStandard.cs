@@ -9,7 +9,7 @@ namespace Ischool.Tidy_Competition.DAO
 {
     class DeductionStandard
     {
-        public static void SaveData(string dataRow)
+        public static void SaveData(string dataRow,string areaID)
         {
             string sql = string.Format(@"
 WITH data_row AS(
@@ -63,8 +63,9 @@ WHERE
                 ON data_row.uid = standard.uid
         WHERE
             data_row.uid IS NULL
+            AND standard.ref_area_id = {1}
     )
-            ",dataRow);
+            ", dataRow,areaID);
 
             UpdateHelper up = new UpdateHelper();
             up.Execute(sql);

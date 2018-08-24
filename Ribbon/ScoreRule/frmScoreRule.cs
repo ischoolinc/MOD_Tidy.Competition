@@ -50,11 +50,12 @@ namespace Ischool.Tidy_Competition
             
         }
 
-        private void dataGridViewX1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewX1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
                 frmEditScoreRule form = new frmEditScoreRule(FormMode.Update);
+                form.Text = "修改分數準則";
                 form.setData((UDT.ScoreRule)dataGridViewX1.Rows[e.RowIndex].Tag);
                 form.FormClosed += delegate
                 {
@@ -65,6 +66,11 @@ namespace Ischool.Tidy_Competition
                 };
                 form.ShowDialog();
             }
+        }
+
+        private void dataGridViewX1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
