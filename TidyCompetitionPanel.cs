@@ -19,7 +19,7 @@ namespace Ischool.Tidy_Competition
 
             Group = "整潔競賽";
 
-            this._browser = new ChromiumWebBrowser("https://sites.google.com/ischool.com.tw/facilities-service/%E9%A6%96%E9%A0%81");
+            this._browser = new ChromiumWebBrowser("https://sites.google.com/ischool.com.tw/neat-competition/%E9%A6%96%E9%A0%81");
             this._browser.Dock = DockStyle.Fill;
             ContentPanePanel.Controls.Add(this._browser);
         }

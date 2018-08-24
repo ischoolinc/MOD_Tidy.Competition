@@ -16,6 +16,7 @@ namespace Ischool.Tidy_Competition
     public partial class frmScorer : BaseForm
     {
         private AccessHelper _access = new AccessHelper();
+        private UpdateHelper _up = new UpdateHelper();
 
         public frmScorer()
         {
@@ -31,6 +32,10 @@ namespace Ischool.Tidy_Competition
             cbxSchoolYear.Items.Add(schoolYear + 1);
 
             cbxSchoolYear.SelectedIndex = 1;
+
+            // Init dgv Identity Column
+            dgvIdentity.Items.Add("評分員");
+            dgvIdentity.Items.Add("評分員幹部");
         }
 
         private void ReloadDataGridView()
@@ -51,6 +56,7 @@ namespace Ischool.Tidy_Competition
                 dgvrow.Cells[col++].Value = "" + row["student_number"];
                 dgvrow.Cells[col++].Value = ("" + row["is_leader"]) == "true" ? "評分員幹部" : "評分員";
                 dgvrow.Cells[col++].Value = "" + row["account"];
+                dgvrow.Cells[col++].Value = "" + row["code"];
                 dgvrow.Cells[col++].Value = "刪除";
                 dgvrow.Tag = "" + row["uid"]; // 評分員編號
 
@@ -62,6 +68,52 @@ namespace Ischool.Tidy_Competition
         private void cbxSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReloadDataGridView();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            List<string> listDataRow = new List<string>();
+            foreach (DataGridViewRow dgvrow in dataGridViewX1.Rows)
+            {
+                string data = string.Format(@"
+SELECT
+    {0}::BIGINT AS uid
+    , {1}::BOOLEAN AS is_leader
+    , '{2}'::TEXT AS code
+                ","" + dgvrow.Tag,"" + dgvrow.Cells[4].Value == "評分員幹部" ? "true" : "false", "" + dgvrow.Cells[6].Value);
+                listDataRow.Add(data);
+            }
+
+            if (listDataRow.Count > 0)
+            {
+                string sql = string.Format(@"
+WITH data_row AS(
+    {0}
+)
+UPDATE $ischool.tidy_competition.scorer SET
+    is_leader = data_row.is_leader
+    , code = data_row.code
+FROM
+    data_row
+WHERE
+    $ischool.tidy_competition.scorer.uid = data_row.uid
+            ", string.Join("UNION ALL", listDataRow));
+
+                try
+                {
+                    this._up.Execute(sql);
+                    MsgBox.Show("資料更新成功!");
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MsgBox.Show("沒有可更新資料!");
+            }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -84,7 +136,7 @@ namespace Ischool.Tidy_Competition
 
         private void dataGridViewX1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && e.ColumnIndex == 6)
+            if (e.RowIndex > -1 && e.ColumnIndex == 7)
             {
                 string name = "" + dataGridViewX1.Rows[e.RowIndex].Cells[2].Value;
                 DialogResult result = MsgBox.Show(string.Format("確定刪除學生{0}評分員身分?", name),"提醒",MessageBoxButtons.YesNo);
@@ -105,5 +157,7 @@ namespace Ischool.Tidy_Competition
                 }
             }
         }
+
+        
     }
 }

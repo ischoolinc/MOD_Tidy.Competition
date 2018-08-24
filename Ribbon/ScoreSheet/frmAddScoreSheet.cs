@@ -94,6 +94,8 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadPlace(string areaID)
         {
+            cbxPlace.Items.Clear();
+            this._dicPlaceByName.Clear();
             List<UDT.Place> listPlace = this._access.Select<UDT.Place>(string.Format("ref_area_id = {0} AND enabled = true",areaID));
             foreach (UDT.Place data in listPlace)
             {
@@ -117,6 +119,8 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadItem(string areaID)
         {
+            cbxItem.Items.Clear();
+            this._dicItemByName.Clear();
             List<UDT.DeDuctionItem> listItem = this._access.Select<UDT.DeDuctionItem>(string.Format("ref_area_id = {0} AND enabled = true", areaID));
             foreach (UDT.DeDuctionItem data in listItem)
             {
@@ -140,6 +144,8 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadStandard(string areaID)
         {
+            cbxStandard.Items.Clear();
+            this._dicStandardByName.Clear();
             List<UDT.DeDuctionStandard> listStandard = this._access.Select<UDT.DeDuctionStandard>(string.Format("ref_area_id = {0} AND enabled = true", areaID));
             foreach (UDT.DeDuctionStandard data in listStandard)
             {

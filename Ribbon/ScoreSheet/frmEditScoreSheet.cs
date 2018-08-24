@@ -108,7 +108,7 @@ namespace Ischool.Tidy_Competition
 
             #region 查核
             {
-                ckbxCheck.Checked = "" + this._row["checked_time"] == "" ? false : true;
+                ckbxCheck.Checked = "" + this._row["checked_time"] == "0001/01/01 00:00:00" ? false : true;
                 if (ckbxCheck.Checked)
                 {
                     tbxCheckName.Text = "" + this._row["checked_name"];
@@ -126,7 +126,7 @@ namespace Ischool.Tidy_Competition
                     tbxCancelName.Text = "" + this._row["canceled_name"];
                     tbxCancelAccount.Text = "" + this._row["canceled_by"];
                     tbxCancelReason.Text = "" + this._row["cancel_reason"];
-                    lbCancelTime.Text = "" + this._row["canceled_time"] == "" ? "" : DateTime.Parse("" + this._row["canceled_time"]).ToString("yyyy/MM/dd");
+                    lbCancelTime.Text = "" + this._row["canceled_time"] == "" ? "" : DateTime.Parse("" + this._row["canceled_time"]).ToString("yyyy/MM/dd hh:mm");
                 }
             }
             #endregion
@@ -344,7 +344,7 @@ namespace Ischool.Tidy_Competition
 
                 data.CheckedBy = tbxCheckAccount.Text.Trim();
             }
-            if (data.CheckedTime != DateTime.Parse(lbCheckTime.Text.Trim()))
+            if (data.CheckedTime.ToString("yyyy/MM/dd hh:mm") != lbCheckTime.Text.Trim() && data.CheckedTime.ToString("yyyy/MM/dd") != "0001/01/01")
             {
                 logs.AppendLine(string.Format("原查核時間「{0}」變更為「{1}」", data.CheckedTime.ToString("yyyy/MM/dd hh:mm"), lbCheckTime.Text.Trim()));
 
@@ -378,7 +378,7 @@ namespace Ischool.Tidy_Competition
 
                 data.CanceledReason = tbxCancelReason.Text.Trim();
             }
-            if (data.CanceledTime != DateTime.Parse(lbCancelTime.Text.Trim()))
+            if (data.CanceledTime.ToString("yyyy/MM/dd hh:mm") != lbCancelTime.Text.Trim() && data.CanceledTime.ToString("yyyy/MM/dd") != "0001/01/01")
             {
                 logs.AppendLine(string.Format("原取消時間「{0}」變更為「{1}」", data.CanceledTime.ToString("yyyy/MM/dd hh:mm"), lbCancelTime.Text.Trim()));
 

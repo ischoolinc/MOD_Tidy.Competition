@@ -20,6 +20,7 @@ namespace Ischool.Tidy_Competition
         private string _schoolYear;
         //private string _semester;
         private string _userAccount = DAO.Actor.Instance().GetUserAccount();
+        private int _scorerCount;
 
         public frmAddScorer(string schoolYear)
         {
@@ -158,7 +159,7 @@ ORDER BY
                     if (dgvrow.Cells[0].Value.ToString() == "True")
                     {
                         UDT.Scorer scorer = new UDT.Scorer();
-                        scorer.Account = dgvrow.Cells[5].Value.ToString();
+                        scorer.Account = dgvrow.Cells[6].Value.ToString();
                         scorer.RefStudentID = int.Parse(dgvrow.Tag.ToString());
                         scorer.SchoolYear = int.Parse(_schoolYear);
                         //scorer.Semester = int.Parse(_semester);
@@ -240,11 +241,18 @@ ORDER BY
                         if (ckbxAll.Checked)
                         {
                             scorer++;
+                            //this._scorerCount++;
                         }
                     }
                 }
             }
-            lbScorerCount.Text = string.Format("人數總計:{0}位",scorer);
+            //if (!ckbxAll.Checked)
+            //{
+            //    this._scorerCount = 0;
+            //}
+            lbScorerCount.Text = string.Format("人數總計:{0}位", scorer);
         }
+
+        
     }
 }

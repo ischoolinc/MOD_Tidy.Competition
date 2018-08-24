@@ -234,6 +234,23 @@
     <Compile Include="Ribbon\ScoreSheet\frmScoreSheet.Designer.cs">
       <DependentUpon>frmScoreSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ribbon\WeeklySCore\ClassWeeklyScoreCalculator.cs" />
+    <Compile Include="Ribbon\WeeklySCore\AreaDailyScoreCalculator.cs" />
+    <Compile Include="Ribbon\WeeklySCore\AreaWeeklyScoreCalculator.cs" />
+    <Compile Include="Ribbon\WeeklySCore\frmWeeklyScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\WeeklySCore\frmWeeklyScore.Designer.cs">
+      <DependentUpon>frmWeeklyScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\WeeklySCore\GeneralScoreRule.cs" />
+    <Compile Include="Ribbon\WeeklySCore\IScoreRule.cs" />
+    <Compile Include="Ribbon\WeeklySCore\RecycleScoreRule.cs" />
+    <Compile Include="Ribbon\WeeklySCore\ScoreItem.cs" />
+    <Compile Include="Ribbon\WeeklySCore\ScoreRuleFactory.cs" />
+    <Compile Include="Ribbon\WeeklySCore\SnapshotData.cs" />
+    <Compile Include="Ribbon\WeeklySCore\WeeklyRankCalculator.cs" />
+    <Compile Include="Ribbon\WeeklySCore\WeeklyStatsCalculator.cs" />
     <Compile Include="TidyCompetitionPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -285,6 +302,7 @@
     <Content Include="Library\SmartSchool.Customization.Data.dll" />
     <Content Include="Library\SmartSchool.Customization.PlugIn.dll" />
     <Content Include="Library\SmartSchool.ErrorReporting.dll" />
+    <None Include="Resources\calc_fav_64.png" />
     <None Include="Resources\bank_config_128.png" />
     <None Include="Resources\presentation_a_config_64.png" />
     <None Include="Resources\virtualcurse_config_64.png" />
@@ -343,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\ScoreSheet\frmScoreSheet.resx">
       <DependentUpon>frmScoreSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\WeeklySCore\frmWeeklyScore.resx">
+      <DependentUpon>frmWeeklyScore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TidyCompetitionPanel.resx">
       <DependentUpon>TidyCompetitionPanel.cs</DependentUpon>

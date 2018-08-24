@@ -56,7 +56,7 @@ namespace Ischool.Tidy_Competition
                 //檢查是否為布林
                 bool.TryParse(cd[name], out checkUDT);
 
-                if (true) //!checkUDT
+                if (!checkUDT) //
                 {
                     AccessHelper access = new AccessHelper();
                     access.Select<UDT.Admin>("UID = '00000'");
@@ -109,8 +109,13 @@ namespace Ischool.Tidy_Competition
                 MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"].Size = RibbonBarButton.MenuButtonSize.Large;
                 MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"].Image = Properties.Resources.presentation_a_config_64;
                 MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"].Size = RibbonBarButton.MenuButtonSize.Large;
+                //MotherForm.RibbonBarItems["整潔競賽", "資料統計"]["報表"].Image = Properties.Resources.Report;
+                //MotherForm.RibbonBarItems["整潔競賽", "資料統計"]["報表"].Size = RibbonBarButton.MenuButtonSize.Large;
                 MotherForm.RibbonBarItems["整潔競賽", "評分管理"]["管理評分紀錄"].Image = Properties.Resources.blacklist_zoom_128;
                 MotherForm.RibbonBarItems["整潔競賽", "評分管理"]["管理評分紀錄"].Size = RibbonBarButton.MenuButtonSize.Large;
+                //MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"].Image = Properties.Resources.calc_fav_64;
+                //MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"].Size = RibbonBarButton.MenuButtonSize.Large;
+
 
                 #region 設定
                 #region 設定分數準則
@@ -272,6 +277,24 @@ namespace Ischool.Tidy_Competition
                         }
                         
                     };
+                }
+                #endregion
+
+                #region 計算排名
+                {
+                    //MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"]["計算週排名"].Click += delegate
+                    //{
+                    //    (new frmWeeklyScore()).ShowDialog();
+                    //};
+                }
+                #endregion
+
+                #region 週排名報表
+                {
+                    //MotherForm.RibbonBarItems["整潔競賽", "資料統計"]["報表"]["週排名報表"].Click += delegate
+                    //{
+                        
+                    //};
                 }
                 #endregion
 

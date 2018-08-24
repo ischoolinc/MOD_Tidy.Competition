@@ -20,6 +20,12 @@ namespace Ischool.Tidy_Competition.UDT
         public string Account { get; set; }
 
         /// <summary>
+        /// 代號
+        /// </summary>
+        [Field(Field = "code", Indexed = false)]
+        public string Code { get; set; }
+
+        /// <summary>
         /// 學生編號
         /// </summary>
         [Field(Field ="ref_student_id",Indexed =false)]

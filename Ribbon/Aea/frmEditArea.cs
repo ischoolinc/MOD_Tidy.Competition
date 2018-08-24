@@ -18,6 +18,7 @@ namespace Ischool.Tidy_Competition
 
         private string _userAccount = DAO.Actor.Instance().GetUserAccount();
 
+        private List<UDT.Area> listDeleteData;
         private Dictionary<string, UDT.ScoreRule> _dicScoreRuleByName = new Dictionary<string, UDT.ScoreRule>();
         private Dictionary<string, UDT.ScoreRule> _dicScoreRuleByID = new Dictionary<string, UDT.ScoreRule>();
 
@@ -38,6 +39,8 @@ namespace Ischool.Tidy_Competition
             }
 
             ReloadDataGridView();
+
+            this.listDeleteData = new List<UDT.Area>();
         }
 
         private void ReloadDataGridView()
@@ -149,7 +152,7 @@ namespace Ischool.Tidy_Competition
                     else
                     {
                         UDT.Area data = new UDT.Area();
-                        data.Enabled = bool.Parse("" + dgvrow.Cells[0].Value);
+                        data.Enabled = bool.Parse("" + dgvrow.Cells[0].Value == "true" ? "true" : "false");
                         data.Name = "" + dgvrow.Cells[1].Value;
                         data.RefRuleID = this._dicScoreRuleByName["" + dgvrow.Cells[2].Value].UID;
                         data.CreatedBy = "" + dgvrow.Cells[3].Value;
@@ -169,6 +172,10 @@ namespace Ischool.Tidy_Competition
                     {
                         this._access.UpdateValues(listUpdateArea);
                     }
+                    if (this.listDeleteData.Count > 0)
+                    {
+                        this._access.DeletedValues(this.listDeleteData);
+                    }
                     MsgBox.Show("資料儲存成功!");
                     ReloadDataGridView();
                 }
@@ -185,6 +192,12 @@ namespace Ischool.Tidy_Competition
             this.Close();
         }
 
-        
+        private void dataGridViewX1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (e.Row.Tag != null)
+            {
+                this.listDeleteData.Add((UDT.Area)e.Row.Tag); // 記錄使用者刪除的區域資料
+            }
+        }
     }
 }

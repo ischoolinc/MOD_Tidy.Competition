@@ -112,35 +112,41 @@
             // 
             this.Column1.HeaderText = "年級";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Width = 60;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "班級";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             this.Column2.Width = 80;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "座號";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             this.Column3.Width = 60;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "姓名";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column7
             // 
             this.Column7.HeaderText = "學號";
             this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
             // 
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column5.HeaderText = "登入帳號";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // labelX2
             // 
@@ -261,7 +267,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::Ischool.Tidy_Competition.Properties.Resources.loading;
             this.pictureBox1.Location = new System.Drawing.Point(326, 355);
             this.pictureBox1.Name = "pictureBox1";
@@ -308,6 +314,9 @@
         private DevComponents.DotNetBar.Controls.TextBoxX tbxSearch;
         private DevComponents.DotNetBar.ButtonX btnLeave;
         private DevComponents.DotNetBar.ButtonX btnSave;
+        private DevComponents.DotNetBar.Controls.CheckBoxX ckbxAll;
+        private DevComponents.DotNetBar.LabelX lbScorerCount;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -315,8 +324,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private DevComponents.DotNetBar.Controls.CheckBoxX ckbxAll;
-        private DevComponents.DotNetBar.LabelX lbScorerCount;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

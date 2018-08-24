@@ -27,7 +27,12 @@ FROM
         ON student.ref_class_id = class.id
 WHERE
     scorer.school_year = {0}
-            ",schoolYear);
+ORDER BY
+    class.grade_year
+    , scorer.is_leader
+    , class.display_order
+    , student.seat_no
+            ", schoolYear);
 
             QueryHelper qh = new QueryHelper();
 

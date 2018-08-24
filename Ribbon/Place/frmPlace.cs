@@ -95,7 +95,7 @@ namespace Ischool.Tidy_Competition
 
                     dgvrow.Cells[1].Value = cr.Name;
                     dgvrow.Cells[2].Value = cr.DisplayOrder;
-                    dgvrow.Cells[3].Value = this._userAccount;
+                    dgvrow.Cells[4].Value = this._userAccount;
 
                     dataGridViewX1.Rows.Add(dgvrow);
                 }

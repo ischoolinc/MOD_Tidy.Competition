@@ -140,7 +140,7 @@ namespace Ischool.Tidy_Competition
                         break;
                 }
                 dgvrow.Cells[col++].Value = "" + row["身分"];
-                dgvrow.Cells[col++].Value = "" + row["checked_time"];
+                dgvrow.Cells[col++].Value = "" + row["checked_time"] == "0001/01/01 00:00:00" ? "" : "" + row["checked_time"];
                 dgvrow.Cells[col++].Value = "" + row["checked_name"];
                 dgvrow.Tag = row; //"" + row["uid"]; // 評分紀錄編號
 

@@ -83,6 +83,16 @@ namespace Ischool.Tidy_Competition.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap calc_fav_64 {
+            get {
+                object obj = ResourceManager.GetObject("calc_fav_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap foreign_language_config_64 {
             get {
                 object obj = ResourceManager.GetObject("foreign_language_config_64", resourceCulture);

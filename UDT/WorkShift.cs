@@ -20,10 +20,16 @@ namespace Ischool.Tidy_Competition.UDT
         public DateTime Date { get; set; }
 
         /// <summary>
-        /// 區塊系統編號
+        /// 區塊編號
         /// </summary>
-        [Field(Field = "ref_zone_id", Indexed = false)]
-        public int RefZoneID { get; set; }
+        [Field(Field = "zone", Indexed = false)]
+        public int Zone { get; set; }
+
+        /// <summary>
+        /// 區域類別系統編號
+        /// </summary>
+        [Field(Field = "ref_area_id", Indexed = false)]
+        public int RefAreaID { get; set; }
 
         /// <summary>
         /// 時段系統編號
