@@ -88,5 +88,23 @@ namespace Ischool.Tidy_Competition
                 return FISCA.Permission.UserAcl.Current[管理評分紀錄].Executable;
             }
         }
+
+        public static string 計算週排名 { get { return "610854DA-7789-4C75-B082-55F32F537E34"; } }
+        public static bool 計算週排名權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[計算週排名].Executable;
+            }
+        }
+
+        public static string 週排名報表 { get { return "22A139A4-C4D3-42D8-A239-62CB2E2691F9"; } }
+        public static bool 週排名報表權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[週排名報表].Executable;
+            }
+        }
     }
 }

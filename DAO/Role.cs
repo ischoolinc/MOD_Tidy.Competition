@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using FISCA.Data;
+using K12.Data;
 
 namespace Ischool.Tidy_Competition.DAO
 {
@@ -30,6 +31,22 @@ WHERE
 
 
             return dt.Rows.Count > 0 ? true : false;
+        }
+
+        /// <summary>
+        /// 更新角色權限
+        /// </summary>
+        public static void UpdateRole()
+        {
+            string sql = string.Format(@"
+UPDATE _role SET
+    permission = '{0}'
+WHERE
+    _role.role_name = '{1}'
+            ", Program._permission, Program._roleName);
+
+            UpdateHelper up = new UpdateHelper();
+            up.Execute(sql);
         }
 
         /// <summary>
@@ -77,7 +94,7 @@ WHERE
             QueryHelper qh = new QueryHelper();
             DataTable dt = qh.Select(sql);
 
-            return "" + dt.Rows[0]["id"]; // 腳色系統編號
+            return "" + dt.Rows[0]["id"]; // 角色系統編號
 
         }
     }

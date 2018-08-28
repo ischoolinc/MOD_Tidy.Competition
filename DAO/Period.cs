@@ -12,8 +12,15 @@ namespace Ischool.Tidy_Competition.DAO
 
         public static void saveData(string dataRow)
         {
-            #region SQL
-            string sql = string.Format(@"
+            string sql = "";
+            if (string.IsNullOrEmpty(dataRow))
+            {
+                sql = "DELETE FROM $ischool.tidy_competition.period";
+            }
+            else
+            {
+                #region SQL
+                sql = string.Format(@"
 WITH data_row AS(
     {0}
 ) , insert_data AS(
@@ -58,7 +65,9 @@ WHERE
             data_row.uid IS NULL
     )
             ", dataRow);
-            #endregion
+                #endregion
+            }
+
 
             UpdateHelper up = new UpdateHelper();
             up.Execute(sql);

@@ -57,7 +57,7 @@ namespace Ischool.Tidy_Competition
                 int col = 0;
                 dgvrow.Cells[col++].Value = area.Enabled;
                 dgvrow.Cells[col++].Value = area.Name;
-                dgvrow.Cells[col++].Value = this._dicScoreRuleByID[area.RefRuleID].Name;
+                dgvrow.Cells[col++].Value = this._dicScoreRuleByID["" + area.RefRuleID].Name;
                 dgvrow.Cells[col++].Value = area.CreatedBy;
                 dgvrow.Tag = area;
 
@@ -144,7 +144,7 @@ namespace Ischool.Tidy_Competition
                         UDT.Area data = (UDT.Area)dgvrow.Tag;
                         data.Enabled = bool.Parse("" + dgvrow.Cells[0].Value);
                         data.Name = "" + dgvrow.Cells[1].Value;
-                        data.RefRuleID = this._dicScoreRuleByName["" + dgvrow.Cells[2].Value].UID;
+                        data.RefRuleID = int.Parse(this._dicScoreRuleByName["" + dgvrow.Cells[2].Value].UID);
                         data.CreatedBy = "" + dgvrow.Cells[3].Value;
 
                         listUpdateArea.Add(data);
@@ -154,7 +154,7 @@ namespace Ischool.Tidy_Competition
                         UDT.Area data = new UDT.Area();
                         data.Enabled = bool.Parse("" + dgvrow.Cells[0].Value == "true" ? "true" : "false");
                         data.Name = "" + dgvrow.Cells[1].Value;
-                        data.RefRuleID = this._dicScoreRuleByName["" + dgvrow.Cells[2].Value].UID;
+                        data.RefRuleID = int.Parse(this._dicScoreRuleByName["" + dgvrow.Cells[2].Value].UID);
                         data.CreatedBy = "" + dgvrow.Cells[3].Value;
 
                         listInsertArea.Add(data);

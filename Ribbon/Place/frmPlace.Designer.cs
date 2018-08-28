@@ -33,17 +33,18 @@
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.cbxArea = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLeave = new DevComponents.DotNetBar.ButtonX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.btnAdd = new DevComponents.DotNetBar.ButtonX();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rightBtnEnable = new System.Windows.Forms.ToolStripMenuItem();
             this.rightBtnDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -106,75 +107,11 @@
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
             this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewX1.Size = new System.Drawing.Size(490, 411);
+            this.dataGridViewX1.Size = new System.Drawing.Size(490, 393);
             this.dataGridViewX1.TabIndex = 2;
             this.dataGridViewX1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellEndEdit);
             this.dataGridViewX1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellValueChanged);
             this.dataGridViewX1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridViewX1_MouseDown);
-            // 
-            // btnLeave
-            // 
-            this.btnLeave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnLeave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLeave.BackColor = System.Drawing.Color.Transparent;
-            this.btnLeave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnLeave.Location = new System.Drawing.Point(427, 473);
-            this.btnLeave.Name = "btnLeave";
-            this.btnLeave.Size = new System.Drawing.Size(75, 23);
-            this.btnLeave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnLeave.TabIndex = 3;
-            this.btnLeave.Text = "離開";
-            this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.BackColor = System.Drawing.Color.Transparent;
-            this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(346, 473);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "儲存";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
-            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnAdd.Location = new System.Drawing.Point(239, 473);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(101, 23);
-            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnAdd.TabIndex = 5;
-            this.btnAdd.Text = "複製班級名稱";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rightBtnEnable,
-            this.rightBtnDelete});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(147, 48);
-            // 
-            // rightBtnEnable
-            // 
-            this.rightBtnEnable.Name = "rightBtnEnable";
-            this.rightBtnEnable.Size = new System.Drawing.Size(146, 22);
-            this.rightBtnEnable.Text = "啟用區域位置";
-            this.rightBtnEnable.Click += new System.EventHandler(this.rightBtnEnable_Click);
-            // 
-            // rightBtnDelete
-            // 
-            this.rightBtnDelete.Name = "rightBtnDelete";
-            this.rightBtnDelete.Size = new System.Drawing.Size(146, 22);
-            this.rightBtnDelete.Text = "刪除區域位置";
-            this.rightBtnDelete.Click += new System.EventHandler(this.rightBtnDelete_Click);
             // 
             // Column1
             // 
@@ -205,11 +142,90 @@
             this.Column4.Name = "Column4";
             this.Column4.Width = 110;
             // 
+            // btnLeave
+            // 
+            this.btnLeave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnLeave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLeave.BackColor = System.Drawing.Color.Transparent;
+            this.btnLeave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnLeave.Location = new System.Drawing.Point(427, 487);
+            this.btnLeave.Name = "btnLeave";
+            this.btnLeave.Size = new System.Drawing.Size(75, 23);
+            this.btnLeave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnLeave.TabIndex = 3;
+            this.btnLeave.Text = "離開";
+            this.btnLeave.Click += new System.EventHandler(this.btnLeave_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSave.Location = new System.Drawing.Point(346, 487);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "儲存";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnAdd.Location = new System.Drawing.Point(239, 487);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(101, 23);
+            this.btnAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "複製班級名稱";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rightBtnEnable,
+            this.rightBtnDelete});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(147, 48);
+            // 
+            // rightBtnEnable
+            // 
+            this.rightBtnEnable.Name = "rightBtnEnable";
+            this.rightBtnEnable.Size = new System.Drawing.Size(146, 22);
+            this.rightBtnEnable.Text = "啟用區域位置";
+            this.rightBtnEnable.Click += new System.EventHandler(this.rightBtnEnable_Click);
+            // 
+            // rightBtnDelete
+            // 
+            this.rightBtnDelete.Name = "rightBtnDelete";
+            this.rightBtnDelete.Size = new System.Drawing.Size(146, 22);
+            this.rightBtnDelete.Text = "刪除區域位置";
+            this.rightBtnDelete.Click += new System.EventHandler(this.rightBtnDelete_Click);
+            // 
+            // labelX2
+            // 
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.Class = "";
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(12, 455);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(490, 23);
+            this.labelX2.TabIndex = 6;
+            this.labelX2.Text = "*選取資料行，點擊滑鼠右鍵進行資料批次刪除與啟用。";
+            // 
             // frmPlace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 508);
+            this.ClientSize = new System.Drawing.Size(514, 522);
+            this.Controls.Add(this.labelX2);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLeave);
@@ -242,5 +258,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private DevComponents.DotNetBar.LabelX labelX2;
     }
 }

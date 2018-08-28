@@ -24,17 +24,19 @@ namespace Ischool.Tidy_Competition
         /// </summary>
         public static string _permission = @"
 <Permissions>
-<Feature Code=""51D738C4-F242-4DC6-A24D-4F484B9C808C"" Permission=""Execute""/>
-<Feature Code=""1F56F310-8EF9-4418-9613-9D246B538727"" Permission=""Execute""/>
-<Feature Code=""1DF4E352-3987-437A-B60E-A419194CF976"" Permission=""Execute""/>
-<Feature Code=""719BDABE-98F7-4BE6-84FE-EB24E225A2B3"" Permission=""Execute""/>
-<Feature Code=""9B6004EC-7659-498E-A919-63356C61B36C"" Permission=""Execute""/>
 <Feature Code=""7B6CC201-E823-4798-864C-A17DA6868229"" Permission=""Execute""/>
+<Feature Code=""9B6004EC-7659-498E-A919-63356C61B36C"" Permission=""Execute""/>
+<Feature Code=""719BDABE-98F7-4BE6-84FE-EB24E225A2B3"" Permission=""Execute""/>
+<Feature Code=""1DF4E352-3987-437A-B60E-A419194CF976"" Permission=""Execute""/>
+<Feature Code=""1F56F310-8EF9-4418-9613-9D246B538727"" Permission=""Execute""/>
+<Feature Code=""51D738C4-F242-4DC6-A24D-4F484B9C808C"" Permission=""Execute""/>
 <Feature Code=""F06A3980-A9D6-461D-93C5-15DAA1059E69"" Permission=""Execute""/>
 <Feature Code=""22324346-A115-4EAD-90C7-261D02C83B5E"" Permission=""Execute""/>
 <Feature Code=""14C345F3-A316-4F17-8A43-669FCA05C588"" Permission=""Execute""/>
-</Permissions>"
-;
+<Feature Code=""610854DA-7789-4C75-B082-55F32F537E34"" Permission=""Execute""/>
+<Feature Code=""22A139A4-C4D3-42D8-A239-62CB2E2691F9"" Permission=""Execute""/>
+</Permissions>
+";
         public static string _roleID;
 
         [MainMethod("整潔競賽模組")]
@@ -42,7 +44,7 @@ namespace Ischool.Tidy_Competition
         {
             #region Init UDT
             {
-                ConfigData cd = K12.Data.School.Configuration["整潔競賽模組載入設定"];
+                ConfigData cd = K12.Data.School.Configuration["整潔競賽模組載入設定1.0.0.3"];
 
                 bool checkUDT = false;
                 string name = "整潔競賽UDT是否已載入";
@@ -91,6 +93,7 @@ namespace Ischool.Tidy_Competition
                 }
                 else
                 {
+                    DAO.Role.UpdateRole(); // 更新角色權限
                     _roleID = DAO.Role.GetRoleID();
                 }
             }
@@ -109,12 +112,12 @@ namespace Ischool.Tidy_Competition
                 MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"].Size = RibbonBarButton.MenuButtonSize.Large;
                 MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"].Image = Properties.Resources.presentation_a_config_64;
                 MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"].Size = RibbonBarButton.MenuButtonSize.Large;
-                //MotherForm.RibbonBarItems["整潔競賽", "資料統計"]["報表"].Image = Properties.Resources.Report;
-                //MotherForm.RibbonBarItems["整潔競賽", "資料統計"]["報表"].Size = RibbonBarButton.MenuButtonSize.Large;
-                MotherForm.RibbonBarItems["整潔競賽", "評分管理"]["管理評分紀錄"].Image = Properties.Resources.blacklist_zoom_128;
-                MotherForm.RibbonBarItems["整潔競賽", "評分管理"]["管理評分紀錄"].Size = RibbonBarButton.MenuButtonSize.Large;
-                //MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"].Image = Properties.Resources.calc_fav_64;
-                //MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"].Size = RibbonBarButton.MenuButtonSize.Large;
+                MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"].Image = Properties.Resources.Report;
+                MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"].Size = RibbonBarButton.MenuButtonSize.Large;
+                MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["管理評分紀錄"].Image = Properties.Resources.blacklist_zoom_128;
+                MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["管理評分紀錄"].Size = RibbonBarButton.MenuButtonSize.Large;
+                MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"].Image = Properties.Resources.calc_fav_64;
+                MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"].Size = RibbonBarButton.MenuButtonSize.Large;
 
 
                 #region 設定
@@ -264,8 +267,8 @@ namespace Ischool.Tidy_Competition
 
                 #region 管理評分紀錄
                 {
-                    MotherForm.RibbonBarItems["整潔競賽", "評分管理"]["管理評分紀錄"].Enable = Permissions.管理評分紀錄權限;
-                    MotherForm.RibbonBarItems["整潔競賽", "評分管理"]["管理評分紀錄"].Click += delegate
+                    MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["管理評分紀錄"].Enable = Permissions.管理評分紀錄權限;
+                    MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["管理評分紀錄"].Click += delegate
                     {
                         if (DAO.Actor.Instance().CheckAdmin())
                         {
@@ -282,19 +285,21 @@ namespace Ischool.Tidy_Competition
 
                 #region 計算排名
                 {
-                    //MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"]["計算週排名"].Click += delegate
-                    //{
-                    //    (new frmWeeklyScore()).ShowDialog();
-                    //};
+                    MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"]["計算週排名"].Enable = Permissions.計算週排名權限;
+                    MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"]["計算週排名"].Click += delegate
+                    {
+                        (new frmWeeklyScore()).ShowDialog();
+                    };
                 }
                 #endregion
 
                 #region 週排名報表
                 {
-                    //MotherForm.RibbonBarItems["整潔競賽", "資料統計"]["報表"]["週排名報表"].Click += delegate
-                    //{
-                        
-                    //};
+                    MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"]["週排名報表"].Enable = Permissions.週排名報表權限;
+                    MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"]["週排名報表"].Click += delegate
+                    {
+                        (new frmWeeklyRankReport()).ShowDialog();
+                    };
                 }
                 #endregion
 
@@ -311,7 +316,8 @@ namespace Ischool.Tidy_Competition
                 detail.Add(new RibbonFeature(Permissions.設定評分員, "設定評分員"));
                 detail.Add(new RibbonFeature(Permissions.設定管理員, "設定管理員"));
                 detail.Add(new RibbonFeature(Permissions.管理評分紀錄, "管理評分紀錄"));
-
+                detail.Add(new RibbonFeature(Permissions.計算週排名, "計算週排名"));
+                detail.Add(new RibbonFeature(Permissions.週排名報表, "週排名報表"));
                 #endregion
             }
             #endregion

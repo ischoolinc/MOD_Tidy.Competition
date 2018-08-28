@@ -4,20 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ischool.Tidy_Competition.Ribbon.WeeklySCore
+namespace Ischool.Tidy_Competition
 {
     class ScoreRuleFactory
     {
         public static IScoreRule Get(string scoreRuleName)
         {
-            if (scoreRuleName == "")
+            IScoreRule result = null;
+
+            if (scoreRuleName == "一般週統計計算公式")
             {
-                return new GeneralScoreRule();
+                result =  new GeneralScoreRule();
             }
-            else
+            else // 資源回收週統計計算公式 
             {
-                return new RecycleScoreRule();
+                result =  new RecycleScoreRule();
             }
+
+            return result;
         }
     }
 }

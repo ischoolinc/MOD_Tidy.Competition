@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Library\Aspose.Cells.dll</HintPath>
-    </Reference>
     <Reference Include="Aspose.Cells_201402, Version=7.7.1.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\Aspose.Cells_201402.dll</HintPath>
@@ -234,6 +230,12 @@
     <Compile Include="Ribbon\ScoreSheet\frmScoreSheet.Designer.cs">
       <DependentUpon>frmScoreSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ribbon\WeeklyRankReport\frmWeeklyRankReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\WeeklyRankReport\frmWeeklyRankReport.Designer.cs">
+      <DependentUpon>frmWeeklyRankReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ribbon\WeeklySCore\ClassWeeklyScoreCalculator.cs" />
     <Compile Include="Ribbon\WeeklySCore\AreaDailyScoreCalculator.cs" />
     <Compile Include="Ribbon\WeeklySCore\AreaWeeklyScoreCalculator.cs" />
@@ -314,6 +316,7 @@
     <None Include="Resources\sandglass_unlock_64.png" />
     <None Include="Resources\Report.png" />
     <None Include="Resources\network_lock_64.png" />
+    <None Include="Resources\週統計樣板.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -361,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\ScoreSheet\frmScoreSheet.resx">
       <DependentUpon>frmScoreSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\WeeklyRankReport\frmWeeklyRankReport.resx">
+      <DependentUpon>frmWeeklyRankReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\WeeklySCore\frmWeeklyScore.resx">
       <DependentUpon>frmWeeklyScore.cs</DependentUpon>

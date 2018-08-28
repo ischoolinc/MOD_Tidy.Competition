@@ -18,7 +18,6 @@ namespace Ischool.Tidy_Competition
     {
         private bool _initFinish = false;
         private string _schoolYear;
-        //private string _semester;
         private string _userAccount = DAO.Actor.Instance().GetUserAccount();
         private int _scorerCount;
 
@@ -26,8 +25,7 @@ namespace Ischool.Tidy_Competition
         {
             InitializeComponent();
 
-            _schoolYear = schoolYear;
-           // _semester = semester;
+            this._schoolYear = schoolYear;
         }
 
         private void frmAddScorer_Load(object sender, EventArgs e)
@@ -213,6 +211,33 @@ ORDER BY
             }
         }
 
+
+
+        private void dataGridViewX1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && e.ColumnIndex == 0)
+            {
+                if (dataGridViewX1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "true")
+                {
+                    this._scorerCount++;
+                    lbScorerCount.Text = string.Format("人數總計:{0}位", this._scorerCount);
+                }
+                else
+                {
+                    this._scorerCount--;
+                    lbScorerCount.Text = string.Format("人數總計:{0}位", this._scorerCount);
+                }
+            }
+        }
+
+        private void dataGridViewX1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewX1.IsCurrentCellDirty)
+            {
+                dataGridViewX1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
         private void tbxSearch_TextChanged(object sender, EventArgs e)
         {
             foreach (DataGridViewRow dgvrow in dataGridViewX1.Rows)
@@ -241,16 +266,19 @@ ORDER BY
                         if (ckbxAll.Checked)
                         {
                             scorer++;
-                            //this._scorerCount++;
                         }
                     }
                 }
             }
-            //if (!ckbxAll.Checked)
-            //{
-            //    this._scorerCount = 0;
-            //}
-            lbScorerCount.Text = string.Format("人數總計:{0}位", scorer);
+            if (!ckbxAll.Checked)
+            {
+                this._scorerCount = 0;
+            }
+            else
+            {
+                this._scorerCount = scorer;
+            }
+            lbScorerCount.Text = string.Format("人數總計:{0}位", this._scorerCount);
         }
 
         

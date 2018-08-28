@@ -45,3 +45,4 @@ D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.
 D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.csproj.CoreCompileInputs.cache
 D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.dll
 D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.pdb
+D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.frmWeeklyRankReport.resources

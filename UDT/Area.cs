@@ -23,7 +23,7 @@ namespace Ischool.Tidy_Competition.UDT
         /// 分數準則編號
         /// </summary>
         [Field(Field = "ref_rule_id", Indexed = false)]
-        public string RefRuleID { get; set; }
+        public int RefRuleID { get; set; }
 
         /// <summary>
         /// 是否啟用

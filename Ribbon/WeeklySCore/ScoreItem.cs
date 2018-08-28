@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ischool.Tidy_Competition.Ribbon.WeeklySCore
+namespace Ischool.Tidy_Competition
 {
     /// <summary>
     /// 一筆供計算成績用的扣分項目

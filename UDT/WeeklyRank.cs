@@ -47,7 +47,7 @@ namespace Ischool.Tidy_Competition.UDT
         /// 週總分
         /// </summary>
         [Field(Field = "week_total", Indexed = false)]
-        public int WeekTotal { get; set; }
+        public decimal WeekTotal { get; set; }
 
         /// <summary>
         /// 週次

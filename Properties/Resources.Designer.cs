@@ -159,5 +159,15 @@ namespace Ischool.Tidy_Competition.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 週統計樣板 {
+            get {
+                object obj = ResourceManager.GetObject("週統計樣板", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

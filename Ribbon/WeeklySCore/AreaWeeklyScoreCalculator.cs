@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ischool.Tidy_Competition.Ribbon.WeeklySCore
+namespace Ischool.Tidy_Competition
 {
     /// <summary>
     /// 計算指定區域的週成績
@@ -51,14 +51,16 @@ namespace Ischool.Tidy_Competition.Ribbon.WeeklySCore
             IScoreRule scoreRule = ScoreRuleFactory.Get(this.ScoreRuleName);
 
             // 計算本 週總扣分數
+            decimal totalDeduction = 0;
             decimal totalScore = 0;
-            foreach(string occurDate in this.dicDailyScores.Keys)
+
+            foreach (string occurDate in this.dicDailyScores.Keys)
             {
-                totalScore += this.dicDailyScores[occurDate].CalculateScore(scoreRule.DailyMaxScore);
+                totalDeduction += this.dicDailyScores[occurDate].CalculateScore(scoreRule.DailyMaxScore);
             }
 
             // 套用計算公式
-            totalScore = scoreRule.Calculate(totalScore);
+            totalScore = scoreRule.Calculate(this.DailyMaxScore,this.WeeklyBaseScore, totalDeduction);
 
             return totalScore;
         }

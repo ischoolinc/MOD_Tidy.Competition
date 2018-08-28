@@ -11,7 +11,17 @@ namespace Ischool.Tidy_Competition.DAO
     {
         public static void SaveData(string dataRow,string areaID)
         {
-            string sql = string.Format(@"
+            string sql = "";
+            if (string.IsNullOrEmpty(dataRow))
+            {
+                sql = string.Format(@"
+DELETE FROM $ischool.tidy_competition.deduction_standard WHERE ref_area_id = {0}
+                ", areaID);
+            }
+            else
+            {
+                #region SQL
+                sql = string.Format(@"
 WITH data_row AS(
     {0}
 ) , insert_data AS(
@@ -65,7 +75,10 @@ WHERE
             data_row.uid IS NULL
             AND standard.ref_area_id = {1}
     )
-            ", dataRow,areaID);
+            ", dataRow, areaID);
+                #endregion
+            }
+            
 
             UpdateHelper up = new UpdateHelper();
             up.Execute(sql);
