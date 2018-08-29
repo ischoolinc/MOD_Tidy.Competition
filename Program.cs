@@ -67,6 +67,7 @@ namespace Ischool.Tidy_Competition
                     access.Select<UDT.Area>("UID = '00000'");
                     access.Select<UDT.ScoreSheet>("UID = '00000'");
                     // access.Select<UDT.Zone>("UID = '00000'"); 廢除區塊UDT
+                    access.Select<UDT.Place>("UID = '00000'");
                     access.Select<UDT.DeDuctionItem>("UID = '00000'");
                     access.Select<UDT.DeDuctionStandard>("UID = '00000'");
                     access.Select<UDT.ScoreRule>("UID = '00000'");
@@ -288,7 +289,14 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"]["計算週排名"].Enable = Permissions.計算週排名權限;
                     MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"]["計算週排名"].Click += delegate
                     {
-                        (new frmWeeklyScore()).ShowDialog();
+                        if (DAO.Actor.Instance().CheckAdmin())
+                        {
+                            (new frmWeeklyScore()).ShowDialog();
+                        }
+                        else
+                        {
+                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
+                        }
                     };
                 }
                 #endregion
@@ -298,7 +306,14 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"]["週排名報表"].Enable = Permissions.週排名報表權限;
                     MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"]["週排名報表"].Click += delegate
                     {
-                        (new frmWeeklyRankReport()).ShowDialog();
+                        if (DAO.Actor.Instance().CheckAdmin())
+                        {
+                            (new frmWeeklyRankReport()).ShowDialog();
+                        }
+                        else
+                        {
+                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
+                        }
                     };
                 }
                 #endregion
@@ -322,7 +337,5 @@ namespace Ischool.Tidy_Competition
             }
             #endregion
         }
-
-        
     }
 }

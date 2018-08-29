@@ -16,6 +16,7 @@ namespace Ischool.Tidy_Competition.DAO
 SELECT
     class.grade_year
     , class.class_name
+    , student.id
     , student.name
     , student.student_number
     , scorer.*

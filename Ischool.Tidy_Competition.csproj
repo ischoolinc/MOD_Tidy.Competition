@@ -116,6 +116,11 @@
       <HintPath>Library\K12.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="K12.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\K12.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -300,6 +305,9 @@
     <Content Include="Library\FISCA.Synchronization.dll" />
     <Content Include="Library\FISCA.UDT.dll" />
     <Content Include="Library\K12.Data.dll" />
+    <Content Include="Library\K12.Presentation.dll" />
+    <Content Include="Library\K12.Presentation.pdb" />
+    <Content Include="Library\K12.Presentation.xml" />
     <Content Include="Library\SmartSchool.API.PlugIn.dll" />
     <Content Include="Library\SmartSchool.Customization.Data.dll" />
     <Content Include="Library\SmartSchool.Customization.PlugIn.dll" />

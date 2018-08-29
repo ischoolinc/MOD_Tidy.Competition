@@ -35,7 +35,6 @@ namespace Ischool.Tidy_Competition
         public frmEditScoreSheet(DataRow row)
         {
             InitializeComponent();
-            //this.AutoScroll = true;
             this._row = row;
         }
 
@@ -73,7 +72,15 @@ namespace Ischool.Tidy_Competition
                     }
                     if (cbxPeriod.Items.Count > 0)
                     {
+                        if (cbxPeriod.Items.IndexOf("" + this._row["period_name"]) == -1)
+                        {
+                            errorProvider1.SetError(cbxPeriod, "原評分時段已被刪除!");
+                        }
                         cbxPeriod.SelectedIndex = cbxPeriod.Items.IndexOf("" + this._row["period_name"]);
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(cbxPeriod,"請先設定評分時段!");
                     }
                 }
                 #endregion
@@ -91,7 +98,15 @@ namespace Ischool.Tidy_Competition
                     }
                     if (cbxArea.Items.Count > 0)
                     {
+                        if (cbxArea.Items.IndexOf("" + this._row["area_name"]) == -1)
+                        {
+                            errorProvider1.SetError(cbxArea, "原區域已被刪除!");
+                        }
                         cbxArea.SelectedIndex = cbxArea.Items.IndexOf("" + this._row["area_name"]);
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(cbxArea, "請先設定區域!");
                     }
                 }
                 #endregion
@@ -157,7 +172,15 @@ namespace Ischool.Tidy_Competition
                 }
                 if (cbxPlace.Items.Count > 0)
                 {
+                    if (cbxPlace.Items.IndexOf("" + this._row["place_name"]) == -1)
+                    {
+                        errorProvider1.SetError(cbxPlace, "原區域位置已被刪除!");
+                    }
                     cbxPlace.SelectedIndex = cbxPlace.Items.IndexOf("" + this._row["place_name"]);
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxPlace,"請先設定區域位置!");
                 }
             }
             #endregion
@@ -177,7 +200,15 @@ namespace Ischool.Tidy_Competition
                 }
                 if (cbxItem.Items.Count > 0)
                 {
+                    if (cbxItem.Items.IndexOf("" + this._row["item_name"]) == -1)
+                    {
+                        errorProvider1.SetError(cbxItem, "原扣分物件已被刪除!");
+                    }
                     cbxItem.SelectedIndex = cbxItem.Items.IndexOf("" + this._row["item_name"]);
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxItem,"請先設定扣分物件!");
                 }
             }
             #endregion
@@ -197,7 +228,15 @@ namespace Ischool.Tidy_Competition
                 }
                 if (cbxStandard.Items.Count > 0)
                 {
+                    if (cbxStandard.Items.IndexOf("" + this._row["standard_name"]) == -1)
+                    {
+                        errorProvider1.SetError(cbxStandard, "原扣分項目已被刪除!");
+                    }
                     cbxStandard.SelectedIndex = cbxStandard.Items.IndexOf("" + this._row["standard_name"]);
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxStandard,"請先設定扣分項目!");
                 }
             }
             #endregion
@@ -250,178 +289,281 @@ namespace Ischool.Tidy_Competition
             this.Close();
         }
 
+        private bool Validate()
+        {
+            #region 驗證時段
+            if (cbxPeriod.SelectedItem == null)
+            {
+                if (cbxPeriod.Items.Count > 0)
+                {
+                    errorProvider1.SetError(cbxPeriod, "請選擇評分時段!");
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxPeriod, "請先設定評分時段!");
+                }
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(cbxPeriod, null);
+            }
+            #endregion
+
+            #region 驗證區域
+            if (cbxArea.SelectedItem == null)
+            {
+                if (cbxArea.Items.Count > 0)
+                {
+                    errorProvider1.SetError(cbxArea, "請選擇區域!");
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxArea, "請先設定區域!");
+                }
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(cbxArea, null);
+            }
+            #endregion
+
+            #region 驗證區域位置
+            if (cbxPlace.SelectedItem == null)
+            {
+                if (cbxPlace.Items.Count > 0)
+                {
+                    errorProvider1.SetError(cbxPlace, "請選擇區域位置!");
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxPlace, "請先設定區域位置!");
+                }
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(cbxPlace, null);
+            }
+            #endregion
+
+            #region 驗證區域扣分物件
+            if (cbxItem.SelectedItem == null)
+            {
+                if (cbxItem.Items.Count > 0)
+                {
+                    errorProvider1.SetError(cbxItem, "請選擇區域扣分物件!");
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxItem, "請先設定區域扣分物件!");
+                }
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(cbxItem, null);
+            }
+            #endregion
+
+            #region 驗證區域扣分項目
+            if (cbxStandard.SelectedItem == null)
+            {
+                if (cbxStandard.Items.Count > 0)
+                {
+                    errorProvider1.SetError(cbxStandard, "請選擇區域扣分項目!");
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxStandard, "請先設定區域扣分項目!");
+                }
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(cbxStandard, null);
+            }
+            #endregion
+
+            return true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // 資料驗證
-
-            #region 資料整理
-            List<UDT.ScoreSheet> listUpdateData = this._access.Select<UDT.ScoreSheet>(string.Format("uid = {0}", this._row["uid"]));
-            UDT.ScoreSheet data = listUpdateData[0];
-
-            // LOG
-            StringBuilder logs = new StringBuilder(string.Format(
-                "管理員「{0}」修改「'{1}'時段，'{2}'位置，'{3}'扣分物件，'{4}'扣分項目，'{5}'建立日期」的評分紀錄。內容如下:"
-                , this._userName, this._dicPeriodByID["" + data.RefPeriodID].Name, this._dicPlaceByID["" + data.RefPlaceID].Name
-                , this._dicItemByID["" + data.RefDeductionItemID].Name, this._dicStandardByID["" + data.RefDeductionStandardID].Name
-                , data.CreateTime.ToString("yyyy/MM/dd")));
-
-            #region 評分紀錄
-            // 時段
-            if (data.RefPeriodID != int.Parse(this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID))
+            if (Validate()) // 資料驗證
             {
-                logs.AppendLine(string.Format("\n 原時段「{0}」修改為「{1}」", this._dicPeriodByID["" + data.RefPeriodID].Name, cbxPeriod.SelectedItem.ToString()));
+                #region 資料整理
+                List<UDT.ScoreSheet> listUpdateData = this._access.Select<UDT.ScoreSheet>(string.Format("uid = {0}", this._row["uid"]));
+                UDT.ScoreSheet data = listUpdateData[0];
 
-                data.RefPeriodID = int.Parse(this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID);
-            }
-            // 位置
-            if (data.RefPlaceID != int.Parse(this._dicPlaceByName[cbxPlace.SelectedItem.ToString()].UID))
-            {
-                logs.AppendLine(string.Format("\n 原位置「{0}」修改為「{1}」", this._dicPlaceByID["" + data.RefPlaceID].Name, cbxPlace.SelectedItem.ToString()));
+                string periodName = this._dicPeriodByID.ContainsKey("" + data.RefPeriodID) ? this._dicPeriodByID["" + data.RefPeriodID].Name : "";
+                string placeName = this._dicPlaceByID.ContainsKey("" + data.RefPlaceID) ? this._dicPlaceByID["" + data.RefPlaceID].Name : "";
+                string itemName = this._dicItemByID.ContainsKey("" + data.RefDeductionItemID) ? this._dicItemByID["" + data.RefDeductionItemID].Name : "";
+                string standardName = this._dicStandardByID.ContainsKey("" + data.RefDeductionStandardID) ? this._dicStandardByID["" + data.RefDeductionStandardID].Name : "";
+                // LOG
+                StringBuilder logs = new StringBuilder(string.Format(
+                    "管理員「{0}」修改「'{1}'時段，'{2}'位置，'{3}'扣分物件，'{4}'扣分項目，'{5}'建立日期」的評分紀錄。內容如下:"
+                    , this._userName, periodName, placeName, itemName, standardName, data.CreateTime.ToString("yyyy/MM/dd")));
 
-                data.RefPlaceID = int.Parse(this._dicPlaceByName[cbxPlace.SelectedItem.ToString()].UID);
-            }
-            // 扣分物件
-            if (data.RefDeductionItemID != int.Parse(this._dicItemByName[cbxItem.SelectedItem.ToString()].UID))
-            {
-                logs.AppendLine(string.Format("原扣分物件「{0}」修改為「{1}」", this._dicItemByID["" + data.RefDeductionItemID].Name, cbxItem.SelectedItem.ToString()));
+                #region 評分紀錄
+                // 時段
+                if (data.RefPeriodID != int.Parse(this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID))
+                {
+                    logs.AppendLine(string.Format("\n 原時段「{0}」修改為「{1}」", this._dicPeriodByID["" + data.RefPeriodID].Name, cbxPeriod.SelectedItem.ToString()));
 
-                data.RefDeductionItemID = int.Parse(this._dicItemByName[cbxItem.SelectedItem.ToString()].UID);
-            }
-            // 扣分項目
-            if (data.RefDeductionStandardID != int.Parse(this._dicStandardByName[cbxStandard.SelectedItem.ToString()].UID))
-            {
-                logs.AppendLine(string.Format("原扣分項目「{0}」修改為「{1}」", this._dicStandardByID["" + data.RefDeductionStandardID].Name, cbxStandard.SelectedItem.ToString()));
+                    data.RefPeriodID = int.Parse(this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID);
+                }
+                // 位置
+                if (data.RefPlaceID != int.Parse(this._dicPlaceByName[cbxPlace.SelectedItem.ToString()].UID))
+                {
+                    logs.AppendLine(string.Format("\n 原位置「{0}」修改為「{1}」", this._dicPlaceByID["" + data.RefPlaceID].Name, cbxPlace.SelectedItem.ToString()));
 
-                data.RefDeductionStandardID = int.Parse(this._dicStandardByName[cbxStandard.SelectedItem.ToString()].UID);
-            }
-            // 備註
-            if (data.Remark != tbxRemark.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原備註「{0}」修改為「{1}」", data.Remark, tbxRemark.Text.Trim()));
+                    data.RefPlaceID = int.Parse(this._dicPlaceByName[cbxPlace.SelectedItem.ToString()].UID);
+                }
+                // 扣分物件
+                if (data.RefDeductionItemID != int.Parse(this._dicItemByName[cbxItem.SelectedItem.ToString()].UID))
+                {
+                    logs.AppendLine(string.Format("原扣分物件「{0}」修改為「{1}」", this._dicItemByID["" + data.RefDeductionItemID].Name, cbxItem.SelectedItem.ToString()));
 
-                data.Remark = tbxRemark.Text.Trim();
-            }
-            // 照片1位置
-            if (data.Picture1 != tbxUrl1.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原照片1位置「{0}」修改為「{1}」", data.Picture1, tbxUrl1.Text.Trim()));
+                    data.RefDeductionItemID = int.Parse(this._dicItemByName[cbxItem.SelectedItem.ToString()].UID);
+                }
+                // 扣分項目
+                if (data.RefDeductionStandardID != int.Parse(this._dicStandardByName[cbxStandard.SelectedItem.ToString()].UID))
+                {
+                    logs.AppendLine(string.Format("原扣分項目「{0}」修改為「{1}」", this._dicStandardByID["" + data.RefDeductionStandardID].Name, cbxStandard.SelectedItem.ToString()));
 
-                data.Picture1 = tbxUrl1.Text.Trim();
-            }
-            // 照片1評論
-            if (data.Pic1Comment != tbxPicComment1.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原照片1評論「{0}」修改為「{1}」", data.Pic1Comment, tbxPicComment1.Text.Trim()));
+                    data.RefDeductionStandardID = int.Parse(this._dicStandardByName[cbxStandard.SelectedItem.ToString()].UID);
+                }
+                // 備註
+                if (data.Remark != tbxRemark.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原備註「{0}」修改為「{1}」", data.Remark, tbxRemark.Text.Trim()));
 
-                data.Pic1Comment = tbxPicComment1.Text.Trim();
-            }
-            // 照片2位置
-            if (data.Picture2 != tbxUrl2.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原照片2評論「{0}」修改為「{1}」", data.Picture2, tbxUrl2.Text.Trim()));
+                    data.Remark = tbxRemark.Text.Trim();
+                }
+                // 照片1位置
+                if (data.Picture1 != tbxUrl1.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原照片1位置「{0}」修改為「{1}」", data.Picture1, tbxUrl1.Text.Trim()));
 
-                data.Picture2 = tbxUrl2.Text.Trim();
-            }
-            // 照片2評論
-            if (data.Pic2Comment != tbxPicComment2.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原照片2評論「{0}」修改為「{1}」", data.Pic2Comment, tbxPicComment2.Text.Trim()));
+                    data.Picture1 = tbxUrl1.Text.Trim();
+                }
+                // 照片1評論
+                if (data.Pic1Comment != tbxPicComment1.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原照片1評論「{0}」修改為「{1}」", data.Pic1Comment, tbxPicComment1.Text.Trim()));
 
-                data.Pic2Comment = tbxPicComment2.Text.Trim();
-            }
-            #endregion
+                    data.Pic1Comment = tbxPicComment1.Text.Trim();
+                }
+                // 照片2位置
+                if (data.Picture2 != tbxUrl2.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原照片2評論「{0}」修改為「{1}」", data.Picture2, tbxUrl2.Text.Trim()));
 
-            #region 查核
-            if (data.CheckedName != tbxCheckName.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原查核者「{0}」變更為「{1}」", data.CheckedName, tbxCheckName.Text.Trim()));
+                    data.Picture2 = tbxUrl2.Text.Trim();
+                }
+                // 照片2評論
+                if (data.Pic2Comment != tbxPicComment2.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原照片2評論「{0}」修改為「{1}」", data.Pic2Comment, tbxPicComment2.Text.Trim()));
 
-                data.CheckedName = tbxCheckName.Text.Trim();
-            }
-            if (data.CheckedBy != tbxCheckAccount.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原查核者帳號「{0}」變更為「{1}」", data.CheckedBy, tbxCheckAccount.Text.Trim()));
+                    data.Pic2Comment = tbxPicComment2.Text.Trim();
+                }
+                #endregion
 
-                data.CheckedBy = tbxCheckAccount.Text.Trim();
-            }
-            if (data.CheckedTime.ToString("yyyy/MM/dd hh:mm") != lbCheckTime.Text.Trim() /*&& data.CheckedTime.ToString("yyyy/MM/dd") != "0001/01/01"*/)
-            {
-                logs.AppendLine(string.Format("原查核時間「{0}」變更為「{1}」", data.CheckedTime.ToString("yyyy/MM/dd hh:mm"), lbCheckTime.Text.Trim()));
+                #region 查核
+                if (data.CheckedName != tbxCheckName.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原查核者「{0}」變更為「{1}」", data.CheckedName, tbxCheckName.Text.Trim()));
 
-                data.CheckedTime = DateTime.Parse(lbCheckTime.Text.Trim());
-            }
+                    data.CheckedName = tbxCheckName.Text.Trim();
+                }
+                if (data.CheckedBy != tbxCheckAccount.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原查核者帳號「{0}」變更為「{1}」", data.CheckedBy, tbxCheckAccount.Text.Trim()));
 
-            #endregion
+                    data.CheckedBy = tbxCheckAccount.Text.Trim();
+                }
+                if (data.CheckedTime.ToString("yyyy/MM/dd hh:mm") != lbCheckTime.Text.Trim() /*&& data.CheckedTime.ToString("yyyy/MM/dd") != "0001/01/01"*/)
+                {
+                    logs.AppendLine(string.Format("原查核時間「{0}」變更為「{1}」", data.CheckedTime.ToString("yyyy/MM/dd hh:mm"), lbCheckTime.Text.Trim()));
 
-            #region 取消
-            if (data.IsCanceled != ckbxCancel.Checked)
-            {
-                logs.AppendLine(string.Format("取消此評分紀錄「{0}」變更為「{1}」", data.IsCanceled == true ? "是" : "否", ckbxCancel.Checked == true ? "是" : "否"));
+                    data.CheckedTime = DateTime.Parse(lbCheckTime.Text.Trim());
+                }
 
-                data.IsCanceled = ckbxCancel.Checked;
-            }
-            if (data.CanceledName != tbxCancelName.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原取消者「{0}」變更為「{1}」", data.CanceledName, tbxCancelName.Text.Trim()));
+                #endregion
 
-                data.CanceledName = tbxCancelName.Text.Trim();
-            }
-            if (data.CanceledBy != tbxCancelAccount.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原取消者帳號「{0}」變更為「{1}」", data.CanceledBy, tbxCancelAccount.Text.Trim()));
+                #region 取消
+                if (data.IsCanceled != ckbxCancel.Checked)
+                {
+                    logs.AppendLine(string.Format("取消此評分紀錄「{0}」變更為「{1}」", data.IsCanceled == true ? "是" : "否", ckbxCancel.Checked == true ? "是" : "否"));
 
-                data.CanceledBy = tbxCancelAccount.Text.Trim();
-            }
-            if (data.CanceledReason != tbxCancelReason.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原取消原因「{0}」變更為「{1}」", data.CanceledReason, tbxCancelReason.Text.Trim()));
+                    data.IsCanceled = ckbxCancel.Checked;
+                }
+                if (data.CanceledName != tbxCancelName.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原取消者「{0}」變更為「{1}」", data.CanceledName, tbxCancelName.Text.Trim()));
 
-                data.CanceledReason = tbxCancelReason.Text.Trim();
-            }
-            if (data.CanceledTime.ToString("yyyy/MM/dd hh:mm") != lbCancelTime.Text.Trim() && data.CanceledTime.ToString("yyyy/MM/dd") != "0001/01/01")
-            {
-                logs.AppendLine(string.Format("原取消時間「{0}」變更為「{1}」", data.CanceledTime.ToString("yyyy/MM/dd hh:mm"), lbCancelTime.Text.Trim()));
+                    data.CanceledName = tbxCancelName.Text.Trim();
+                }
+                if (data.CanceledBy != tbxCancelAccount.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原取消者帳號「{0}」變更為「{1}」", data.CanceledBy, tbxCancelAccount.Text.Trim()));
 
-                data.CanceledTime = DateTime.Parse(lbCancelTime.Text.Trim());
-            }
+                    data.CanceledBy = tbxCancelAccount.Text.Trim();
+                }
+                if (data.CanceledReason != tbxCancelReason.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原取消原因「{0}」變更為「{1}」", data.CanceledReason, tbxCancelReason.Text.Trim()));
 
-            #endregion
+                    data.CanceledReason = tbxCancelReason.Text.Trim();
+                }
+                if (data.CanceledTime.ToString("yyyy/MM/dd hh:mm") != lbCancelTime.Text.Trim() && data.CanceledTime.ToString("yyyy/MM/dd") != "0001/01/01")
+                {
+                    logs.AppendLine(string.Format("原取消時間「{0}」變更為「{1}」", data.CanceledTime.ToString("yyyy/MM/dd hh:mm"), lbCancelTime.Text.Trim()));
 
-            #region 修改者資料
-            if (data.LastUpdateName != tbxUpdateName.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原修改者「{0}」變更為「{1}」", data.LastUpdateName, tbxUpdateName.Text.Trim()));
+                    data.CanceledTime = DateTime.Parse(lbCancelTime.Text.Trim());
+                }
 
-                data.LastUpdateName = tbxUpdateName.Text.Trim();
-            }
-            if (data.LastUpdateBy != tbxUpdateBy.Text.Trim())
-            {
-                logs.AppendLine(string.Format("原修改者帳號「{0}」變更為「{1}」", data.LastUpdateBy, tbxUpdateBy.Text.Trim()));
+                #endregion
 
-                data.LastUpdateBy = tbxUpdateBy.Text.Trim();
-            }
-            if (data.LastUpdateTime != DateTime.Parse(lbUpdateTime.Text.Trim()))
-            {
-                logs.AppendLine(string.Format("原修改者時間「{0}」變更為「{1}」", data.LastUpdateTime.ToString("yyyy/MM/dd hh:mm"), lbUpdateTime.Text.Trim()));
+                #region 修改者資料
+                if (data.LastUpdateName != tbxUpdateName.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原修改者「{0}」變更為「{1}」", data.LastUpdateName, tbxUpdateName.Text.Trim()));
 
-                data.LastUpdateTime = DateTime.Parse(lbUpdateTime.Text.Trim());
-            }
+                    data.LastUpdateName = tbxUpdateName.Text.Trim();
+                }
+                if (data.LastUpdateBy != tbxUpdateBy.Text.Trim())
+                {
+                    logs.AppendLine(string.Format("原修改者帳號「{0}」變更為「{1}」", data.LastUpdateBy, tbxUpdateBy.Text.Trim()));
 
-            #endregion 
-            #endregion
+                    data.LastUpdateBy = tbxUpdateBy.Text.Trim();
+                }
+                if (data.LastUpdateTime != DateTime.Parse(lbUpdateTime.Text.Trim()))
+                {
+                    logs.AppendLine(string.Format("原修改者時間「{0}」變更為「{1}」", data.LastUpdateTime.ToString("yyyy/MM/dd hh:mm"), lbUpdateTime.Text.Trim()));
 
-            // 資料儲存
-            try
-            {
-                this._access.UpdateValues(listUpdateData);
-                FISCA.LogAgent.ApplicationLog.Log("整潔競賽", "修改評分紀錄", logs.ToString());
-                MsgBox.Show("資料更新成功!");
-                this.DialogResult = DialogResult.Yes;
-                this.Close();
-            }
-            catch(Exception ex)
-            {
-                MsgBox.Show(ex.Message);
+                    data.LastUpdateTime = DateTime.Parse(lbUpdateTime.Text.Trim());
+                }
+
+                #endregion
+                #endregion
+
+                // 資料儲存
+                try
+                {
+                    this._access.UpdateValues(listUpdateData);
+                    FISCA.LogAgent.ApplicationLog.Log("整潔競賽", "修改評分紀錄", logs.ToString());
+                    MsgBox.Show("資料更新成功!");
+                    this.DialogResult = DialogResult.Yes;
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(ex.Message);
+                }
             }
         }
     }

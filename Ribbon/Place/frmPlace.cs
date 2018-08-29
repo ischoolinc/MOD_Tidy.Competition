@@ -11,6 +11,7 @@ using FISCA.Presentation.Controls;
 using FISCA.UDT;
 using K12.Data;
 using System.Collections;
+using Ischool.Tidy_Competition.UDT;
 
 namespace Ischool.Tidy_Competition
 {
@@ -20,6 +21,7 @@ namespace Ischool.Tidy_Competition
         private Dictionary<string, UDT.Area> _dicAreaByName = new Dictionary<string, UDT.Area>();
         private string _userAccount = DAO.Actor.Instance().GetUserAccount();
         private bool _initFinsh = false;
+        private bool _isValueChange = false;
 
         public frmPlace()
         {
@@ -48,11 +50,35 @@ namespace Ischool.Tidy_Competition
             this._initFinsh = true;
         }
 
+        /// <summary>
+        /// 位置排序規則
+        /// </summary>
+        private class SortPlace : IComparer<UDT.Place>
+        {
+            public int Compare(Place x, Place y)
+            {
+                if (x.DisplayOrder > y.DisplayOrder)
+                {
+                    return 1;
+                }
+                if (x.DisplayOrder < y.DisplayOrder)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
         private void ReloadDataGridView()
         {
+            this._isValueChange = false;
             string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
             // 取得區域位置資料
             List<UDT.Place> listPlace = this._access.Select<UDT.Place>(string.Format("ref_area_id = {0}", areaID));
+            listPlace.Sort(new SortPlace());
 
             dataGridViewX1.Rows.Clear();
 
@@ -99,7 +125,6 @@ namespace Ischool.Tidy_Competition
 
                     dataGridViewX1.Rows.Add(dgvrow);
                 }
-                
             }
         }
 
@@ -161,21 +186,23 @@ namespace Ischool.Tidy_Competition
             {
                 if (e.ColumnIndex == 1)
                 {
-                    dgvName_Validate();
+                    if (dgvName_Validate())
+                    {
+                        this._isValueChange = true; 
+                    }
                 }
-
                 if (e.ColumnIndex == 2)
                 {
                     if (dgvDisplayOrder_Validate())
                     {
-                        //dataGridViewX1.Sort(dataGridViewX1.Columns[2], ListSortDirection.Ascending);
                         dataGridViewX1.Sort(new dgvDisplayOrder_Sort());
+                        this._isValueChange = true;
                     }
                 }
-
                 if (e.ColumnIndex == 3)
                 {
                     dgvZone_Validate();
+                    this._isValueChange = true;
                 }
             }
         }
@@ -383,7 +410,19 @@ namespace Ischool.Tidy_Competition
 
         private void btnLeave_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this._isValueChange)
+            {
+                DialogResult result = MsgBox.Show("已修改資料尚未儲存，確定離開?", "提醒", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
+            
         }
 
         private void dataGridViewX1_MouseDown(object sender, MouseEventArgs e)

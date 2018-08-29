@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using FISCA.Presentation.Controls;
 using K12.Data;
 using FISCA.UDT;
+using FISCA.Data;
 
 namespace Ischool.Tidy_Competition
 {
@@ -18,8 +19,8 @@ namespace Ischool.Tidy_Competition
         private AccessHelper _access = new AccessHelper();
         private Dictionary<string, UDT.Area> _dicAreaByName = new Dictionary<string, UDT.Area>();
         private Dictionary<string, UDT.Place> _dicPlaceByName = new Dictionary<string, UDT.Place>();
-        private Dictionary<string, ClassRecord> _dicClassRecordByName = new Dictionary<string, ClassRecord>();
-        
+        private Dictionary<string, DataRow> _dicClassRecordByName = new Dictionary<string, DataRow>();
+        private bool _isValueChange = false;
         public frmPcBelong()
         {
             InitializeComponent();
@@ -28,16 +29,17 @@ namespace Ischool.Tidy_Competition
         private void frmPcBelong_Load(object sender, EventArgs e)
         {
             // 取得全校所有班級資料
-            List<ClassRecord> listClassRecord = Class.SelectAll();
+            DataTable dt = getAllClassData();
+            //List<ClassRecord> listClassRecord = Class.SelectAll();
 
             dgvClass.Width = 140;
-            foreach (ClassRecord cr in listClassRecord)
+            foreach (DataRow row in dt.Rows)
             {
-                if (!this._dicClassRecordByName.ContainsKey(cr.Name))
+                if (!this._dicClassRecordByName.ContainsKey("" + row["class_name"]))
                 {
-                    this._dicClassRecordByName.Add(cr.Name, cr);
+                    this._dicClassRecordByName.Add("" + row["class_name"], row);
 
-                    dgvClass.Items.Add(cr.Name);
+                    dgvClass.Items.Add("" + row["class_name"]);
                 }
             }
 
@@ -69,9 +71,25 @@ namespace Ischool.Tidy_Competition
             #endregion
         }
 
+        private DataTable getAllClassData()
+        {
+            string sql = @"
+SELECT
+    *
+FROM
+    class
+ORDER BY
+    display_order
+    , class_name
+";
+            QueryHelper qh = new QueryHelper();
+            return qh.Select(sql);
+        }
+
         private void ReloadDataGridView()
         {
             dataGridViewX1.Rows.Clear();
+            this._isValueChange = false;
             string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
 
             // 取得位置負責班級資料
@@ -88,7 +106,7 @@ namespace Ischool.Tidy_Competition
                 dgvrow.Cells[col++].Value = "" + row["class_name"];
                 if (!string.IsNullOrEmpty(pcBelongID))
                 {
-                    dgvrow.DefaultCellStyle.BackColor = Color.LightGreen;
+                    dgvrow.Cells[1].Style.BackColor = Color.LightGreen;
                 }
                 dgvrow.Tag = pcBelongID;
 
@@ -124,7 +142,7 @@ namespace Ischool.Tidy_Competition
                 {
                     if (!string.IsNullOrEmpty("" + dgvrow.Cells[1].Value)) // 打掃區域有指定負責班級
                     {
-                        string classID = this._dicClassRecordByName["" + dgvrow.Cells[1].Value].ID;
+                        string classID = "" + this._dicClassRecordByName["" + dgvrow.Cells[1].Value]["id"];
                         UDT.PcBelong data = new UDT.PcBelong();
                         data.SchoolYear = int.Parse(cbxSchoolYear.SelectedItem.ToString());
                         data.RefPlaceID = int.Parse(placeID);
@@ -140,7 +158,7 @@ namespace Ischool.Tidy_Competition
                     UDT.PcBelong data = this._access.Select<UDT.PcBelong>(string.Format("uid = {0}", pcBelongID))[0];
                     if (data != null)
                     {
-                        string classID = ("" + dgvrow.Cells[1].Value) == "" ? null : this._dicClassRecordByName["" + dgvrow.Cells[1].Value].ID;
+                        string classID = ("" + dgvrow.Cells[1].Value) == "" ? null : "" + this._dicClassRecordByName["" + dgvrow.Cells[1].Value]["id"];
 
                         data.RefClassID = int.Parse(classID);
 
@@ -180,6 +198,8 @@ namespace Ischool.Tidy_Competition
                 }
                 else
                 {
+                    dgvrow.Cells[1].Style.BackColor = Color.LightPink;
+                    this._isValueChange = true;
                     dgvrow.ErrorText = null;
                     return true; 
                 }
@@ -210,7 +230,18 @@ namespace Ischool.Tidy_Competition
 
         private void btnLeave_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this._isValueChange)
+            {
+                DialogResult result = MsgBox.Show("已修改資料尚未儲存，確定離開?","提醒",MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

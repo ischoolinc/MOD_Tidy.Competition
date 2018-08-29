@@ -17,7 +17,7 @@ namespace Ischool.Tidy_Competition
         private AccessHelper _access = new AccessHelper();
 
         private string _userAccount = DAO.Actor.Instance().GetUserAccount();
-
+        private bool _isValueChange = false;
         private List<UDT.Area> listDeleteData;
         private Dictionary<string, UDT.ScoreRule> _dicScoreRuleByName = new Dictionary<string, UDT.ScoreRule>();
         private Dictionary<string, UDT.ScoreRule> _dicScoreRuleByID = new Dictionary<string, UDT.ScoreRule>();
@@ -45,6 +45,7 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadDataGridView()
         {
+            this._isValueChange = false;
             dataGridViewX1.Rows.Clear();
             // 取得區域類別資料
             List<UDT.Area> listArea = this._access.Select<UDT.Area>();
@@ -187,9 +188,9 @@ namespace Ischool.Tidy_Competition
             }
         }
 
-        private void btnLeave_Click(object sender, EventArgs e)
+        private void dataGridViewX1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            this.Close();
+            this._isValueChange = true;
         }
 
         private void dataGridViewX1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
@@ -197,6 +198,23 @@ namespace Ischool.Tidy_Competition
             if (e.Row.Tag != null)
             {
                 this.listDeleteData.Add((UDT.Area)e.Row.Tag); // 記錄使用者刪除的區域資料
+                this._isValueChange = true;
+            }
+        }
+
+        private void btnLeave_Click(object sender, EventArgs e)
+        {
+            if (this._isValueChange)
+            {
+                DialogResult result = MsgBox.Show("已修改資料尚未儲存，確定離開?", "提醒", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
             }
         }
     }

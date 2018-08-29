@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.cbxSchoolYear = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
-            this.btnLeave = new DevComponents.DotNetBar.ButtonX();
-            this.lbScorerCount = new DevComponents.DotNetBar.LabelX();
-            this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,7 +41,17 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.btnAdd = new DevComponents.DotNetBar.ButtonX();
+            this.btnLeave = new DevComponents.DotNetBar.ButtonX();
+            this.lbScorerCount = new DevComponents.DotNetBar.LabelX();
+            this.btnSave = new DevComponents.DotNetBar.ButtonX();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnAddPending = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnRemovePending = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.lbTempStudentCount = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelX1
@@ -95,22 +102,76 @@
             this.Column6,
             this.Column8,
             this.Column7});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewX1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 58);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
+            this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewX1.Size = new System.Drawing.Size(844, 388);
             this.dataGridViewX1.TabIndex = 2;
             this.dataGridViewX1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellClick);
+            this.dataGridViewX1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridViewX1_MouseDown);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "年級";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 60;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "班級";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "姓名";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "學號";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // dgvIdentity
+            // 
+            this.dgvIdentity.HeaderText = "身分";
+            this.dgvIdentity.Name = "dgvIdentity";
+            this.dgvIdentity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIdentity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.HeaderText = "登入帳號";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "代號";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 80;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "";
+            this.Column7.Name = "Column7";
+            this.Column7.Text = null;
+            this.Column7.Width = 60;
             // 
             // btnAdd
             // 
@@ -168,63 +229,64 @@
             this.btnSave.Text = "儲存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // Column1
+            // contextMenuStrip1
             // 
-            this.Column1.HeaderText = "年級";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 60;
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAddPending,
+            this.btnRemovePending});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 48);
             // 
-            // Column2
+            // btnAddPending
             // 
-            this.Column2.HeaderText = "班級";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.btnAddPending.Name = "btnAddPending";
+            this.btnAddPending.Size = new System.Drawing.Size(158, 22);
+            this.btnAddPending.Text = "加入待處理學生";
+            this.btnAddPending.Click += new System.EventHandler(this.btnAddPending_Click);
             // 
-            // Column4
+            // btnRemovePending
             // 
-            this.Column4.HeaderText = "姓名";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.btnRemovePending.Name = "btnRemovePending";
+            this.btnRemovePending.Size = new System.Drawing.Size(158, 22);
+            this.btnRemovePending.Text = "清空待處理學生";
+            this.btnRemovePending.Click += new System.EventHandler(this.btnRemovePending_Click);
             // 
-            // Column3
+            // labelX2
             // 
-            this.Column3.HeaderText = "學號";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
             // 
-            // dgvIdentity
             // 
-            this.dgvIdentity.HeaderText = "身分";
-            this.dgvIdentity.Name = "dgvIdentity";
-            this.dgvIdentity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIdentity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // Column6
+            this.labelX2.BackgroundStyle.Class = "";
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(12, 452);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(310, 23);
+            this.labelX2.TabIndex = 8;
+            this.labelX2.Text = "*提示:選取資料行，點選右鍵可將學生加入待處理。";
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "登入帳號";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
+            // lbTempStudentCount
             // 
-            // Column8
+            this.lbTempStudentCount.BackColor = System.Drawing.Color.Transparent;
             // 
-            this.Column8.HeaderText = "代號";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 80;
             // 
-            // Column7
             // 
-            this.Column7.HeaderText = "";
-            this.Column7.Name = "Column7";
-            this.Column7.Text = null;
-            this.Column7.Width = 60;
+            this.lbTempStudentCount.BackgroundStyle.Class = "";
+            this.lbTempStudentCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbTempStudentCount.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbTempStudentCount.Location = new System.Drawing.Point(328, 452);
+            this.lbTempStudentCount.Name = "lbTempStudentCount";
+            this.lbTempStudentCount.Size = new System.Drawing.Size(152, 23);
+            this.lbTempStudentCount.TabIndex = 9;
+            this.lbTempStudentCount.Text = "已將X位學生加入待處理";
             // 
             // frmScorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(868, 487);
+            this.Controls.Add(this.lbTempStudentCount);
+            this.Controls.Add(this.labelX2);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lbScorerCount);
             this.Controls.Add(this.btnLeave);
@@ -237,6 +299,7 @@
             this.Text = "設定評分員";
             this.Load += new System.EventHandler(this.frmScorer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -258,5 +321,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn Column7;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem btnAddPending;
+        private System.Windows.Forms.ToolStripMenuItem btnRemovePending;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX lbTempStudentCount;
     }
 }

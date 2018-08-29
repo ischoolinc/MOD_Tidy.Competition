@@ -113,26 +113,34 @@ FROM
                         , schoolYear, semester, weekNo, this.dicWeekNoData[key].StarTime, this.dicWeekNoData[key].EndTime),"提醒",MessageBoxButtons.YesNo);
                     if (dResult == DialogResult.Yes)
                     {
-                        // 1. 統計當週各班成績
-                        WeeklyStatsCalculator calOne = new WeeklyStatsCalculator(schoolYear, semester, weekNo, startTime, endTime);
-                        calOne.Execute();
-
-                        // 2. 計算各年級班排名
-                        WeeklyRankCalculator calTwo = new WeeklyRankCalculator(schoolYear, semester, weekNo, startTime, endTime);
-                        calTwo.Execute();
-
-                        // 3. 找出當週排名
-                        DataTable dt = getWeeklyRank(schoolYear, semester, weekNo);
-
-                        DialogResult result = MsgBox.Show("週排名已計算完成，確定產出排名報表?", "提醒", MessageBoxButtons.YesNo);
-
-                        if (result == DialogResult.Yes)
-                        {
-                            print(dt);
-                        }
+                        execute(schoolYear, semester, weekNo, startTime, endTime);
                     }
                 }
+                else
+                {
+                    execute(schoolYear, semester, weekNo, startTime, endTime);
+                }
+            }
+        }
 
+        private void execute(string schoolYear,string semester,int weekNo,string startTime,string endTime)
+        {
+            // 1. 統計當週各班成績
+            WeeklyStatsCalculator calOne = new WeeklyStatsCalculator(schoolYear, semester, weekNo, startTime, endTime);
+            calOne.Execute();
+
+            // 2. 計算各年級班排名
+            WeeklyRankCalculator calTwo = new WeeklyRankCalculator(schoolYear, semester, weekNo, startTime, endTime);
+            calTwo.Execute();
+
+            // 3. 找出當週排名
+            DataTable dt = getWeeklyRank(schoolYear, semester, weekNo);
+
+            DialogResult result = MsgBox.Show("週排名已計算完成，確定產出排名報表?", "提醒", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                print(dt);
             }
         }
 

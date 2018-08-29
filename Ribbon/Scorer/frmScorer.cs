@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using FISCA.Presentation.Controls;
 using K12.Data;
 using FISCA.UDT;
+using K12.Presentation;
 
 namespace Ischool.Tidy_Competition
 {
@@ -17,6 +18,7 @@ namespace Ischool.Tidy_Competition
     {
         private AccessHelper _access = new AccessHelper();
         private UpdateHelper _up = new UpdateHelper();
+        private List<string> _listTempStudentID = new List<string>();
 
         public frmScorer()
         {
@@ -25,13 +27,16 @@ namespace Ischool.Tidy_Competition
 
         private void frmScorer_Load(object sender, EventArgs e)
         {
-            // Init SchoolYear
+            #region Init SchoolYear
             int schoolYear = int.Parse(School.DefaultSchoolYear);
             cbxSchoolYear.Items.Add(schoolYear - 1);
             cbxSchoolYear.Items.Add(schoolYear);
             cbxSchoolYear.Items.Add(schoolYear + 1);
 
             cbxSchoolYear.SelectedIndex = 1;
+            #endregion
+
+            lbTempStudentCount.Text = string.Format("已將{0}位學生加入待處理", NLDPanels.Student.TempSource.Count);
 
             // Init dgv Identity Column
             dgvIdentity.Items.Add("評分員");
@@ -58,7 +63,7 @@ namespace Ischool.Tidy_Competition
                 dgvrow.Cells[col++].Value = "" + row["account"];
                 dgvrow.Cells[col++].Value = "" + row["code"];
                 dgvrow.Cells[col++].Value = "刪除";
-                dgvrow.Tag = "" + row["uid"]; // 評分員編號
+                dgvrow.Tag = row;  // 評分員資料  //"" + row["uid"];  評分員編號
 
                 dataGridViewX1.Rows.Add(dgvrow);
             }
@@ -80,7 +85,7 @@ SELECT
     {0}::BIGINT AS uid
     , {1}::BOOLEAN AS is_leader
     , '{2}'::TEXT AS code
-                ","" + dgvrow.Tag,"" + dgvrow.Cells[4].Value == "評分員幹部" ? "true" : "false", "" + dgvrow.Cells[6].Value);
+                ","" + ((DataRow)dgvrow.Tag)["uid"],"" + dgvrow.Cells[4].Value == "評分員幹部" ? "true" : "false", "" + dgvrow.Cells[6].Value);
                 listDataRow.Add(data);
             }
 
@@ -129,11 +134,6 @@ WHERE
             form.ShowDialog();
         }
 
-        private void btnLeave_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void dataGridViewX1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1 && e.ColumnIndex == 7)
@@ -142,7 +142,7 @@ WHERE
                 DialogResult result = MsgBox.Show(string.Format("確定刪除學生{0}評分員身分?", name),"提醒",MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    List<UDT.Scorer> listTargetScorer = this._access.Select<UDT.Scorer>(string.Format("uid = {0}", "" + dataGridViewX1.Rows[e.RowIndex].Tag));
+                    List<UDT.Scorer> listTargetScorer = this._access.Select<UDT.Scorer>(string.Format("uid = {0}", "" + ((DataRow)dataGridViewX1.Rows[e.RowIndex].Tag)["uid"]));
 
                     try
                     {
@@ -158,6 +158,35 @@ WHERE
             }
         }
 
-        
+        private void dataGridViewX1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(dataGridViewX1,new Point(e.X,e.Y));
+            }
+        }
+
+        private void btnAddPending_Click(object sender, EventArgs e)
+        {
+            List<string> listStudentID = new List<string>();
+            foreach (DataGridViewRow dgvrow in dataGridViewX1.SelectedRows)
+            {
+                string studentID = "" + ((DataRow)dgvrow.Tag)["id"]; // 學生系統編號
+                listStudentID.Add(studentID);
+            }
+            NLDPanels.Student.AddToTemp(listStudentID); // 將學生加入待處理
+            lbTempStudentCount.Text = string.Format("已將{0}位學生加入待處理", NLDPanels.Student.TempSource.Count);
+        }
+
+        private void btnRemovePending_Click(object sender, EventArgs e)
+        {
+            NLDPanels.Student.RemoveFromTemp(NLDPanels.Student.TempSource);
+            lbTempStudentCount.Text = string.Format("已將{0}位學生加入待處理", NLDPanels.Student.TempSource.Count);
+        }
+
+        private void btnLeave_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

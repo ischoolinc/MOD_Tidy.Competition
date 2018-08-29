@@ -154,7 +154,7 @@ ORDER BY
             {
                 if (dgvrow.Cells[0].Value != null)
                 {
-                    if (dgvrow.Cells[0].Value.ToString() == "True")
+                    if (dgvrow.Cells[0].Value.ToString() == "true")
                     {
                         UDT.Scorer scorer = new UDT.Scorer();
                         scorer.Account = dgvrow.Cells[6].Value.ToString();
