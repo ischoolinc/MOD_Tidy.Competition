@@ -88,6 +88,8 @@ ORDER BY
 
         private void ReloadDataGridView()
         {
+            this.SuspendLayout();
+
             dataGridViewX1.Rows.Clear();
             this._isValueChange = false;
             string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
@@ -112,6 +114,8 @@ ORDER BY
 
                 dataGridViewX1.Rows.Add(dgvrow);
             }
+
+            this.ResumeLayout();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

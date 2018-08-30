@@ -45,6 +45,8 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadDataGridView()
         {
+            this.SuspendLayout();
+
             this._isValueChange = false;
             dataGridViewX1.Rows.Clear();
             // 取得區域類別資料
@@ -64,6 +66,8 @@ namespace Ischool.Tidy_Competition
 
                 dataGridViewX1.Rows.Add(dgvrow);
             }
+
+            this.ResumeLayout();
         }
 
         private void dataGridViewX1_CellEndEdit(object sender, DataGridViewCellEventArgs e)

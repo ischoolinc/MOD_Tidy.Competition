@@ -23,11 +23,15 @@ namespace Ischool.Tidy_Competition
 
         private void frmEditScoreRule_Load(object sender, EventArgs e)
         {
+
             ReloadDataGridView();
+
         }
 
         private void ReloadDataGridView()
         {
+            this.SuspendLayout();
+
             dataGridViewX1.Rows.Clear();
             // 取得分數準則資料
             List<UDT.ScoreRule> listScoreRule = this._access.Select<UDT.ScoreRule>();
@@ -47,7 +51,8 @@ namespace Ischool.Tidy_Competition
 
                 dataGridViewX1.Rows.Add(dgvrow);
             }
-            
+
+            this.ResumeLayout();
         }
 
         private void dataGridViewX1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -66,11 +71,6 @@ namespace Ischool.Tidy_Competition
                 };
                 form.ShowDialog();
             }
-        }
-
-        private void dataGridViewX1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

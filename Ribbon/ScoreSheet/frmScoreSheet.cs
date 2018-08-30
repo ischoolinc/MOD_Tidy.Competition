@@ -108,6 +108,8 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadDataGridView()
         {
+            this.SuspendLayout();
+
             string schoolYear = lbSchoolYear.Text;
             string semester = lbSemester.Text;
             string periodID = this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID;
@@ -146,6 +148,8 @@ namespace Ischool.Tidy_Competition
 
                 dataGridViewX1.Rows.Add(dgvrow);
             }
+
+            this.ResumeLayout();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

@@ -95,7 +95,7 @@ namespace Ischool.Tidy_Competition.UDT
         /// 照片2檔案大小
         /// </summary>
         [Field(Field = "pic2_size", Indexed = false)]
-        public int Pic21Size { get; set; }
+        public int Pic2Size { get; set; }
 
         /// <summary>
         /// 照片2原始路徑

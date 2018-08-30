@@ -44,7 +44,14 @@ namespace Ischool.Tidy_Competition
         private void frmAddScoreRule_Load(object sender, EventArgs e)
         {
             lbAccount.Text = DAO.Actor.Instance().GetUserAccount();
-            lbCreatTime.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            if (this._mode == FormMode.Add)
+            {
+                lbCreatTime.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            }
+            else
+            {
+                lbCreatTime.Text = this._data.CreateTime.ToString("yyyy/MM/dd");
+            }
 
             cbxFormula.SelectedIndex = 0;
         }

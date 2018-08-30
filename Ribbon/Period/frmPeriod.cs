@@ -29,6 +29,8 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadDataGridView()
         {
+            this.SuspendLayout();
+
             dataGridViewX1.Rows.Clear();
             // 取得時段資料
             List<UDT.Period> listPeriod = this._access.Select<UDT.Period>();
@@ -45,6 +47,8 @@ namespace Ischool.Tidy_Competition
 
                 dataGridViewX1.Rows.Add(dgvrow);
             }
+
+            this.ResumeLayout();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

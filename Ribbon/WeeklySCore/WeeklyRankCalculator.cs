@@ -58,7 +58,7 @@ namespace Ischool.Tidy_Competition
         {
             int lastWeekNo = this._weekNumber - 1;
             string condition = string.Format(@"school_year = {0} AND semester = {1} AND week_number = {2}",this._schoolYear,this._semester, lastWeekNo);
-            List<UDT.WeeklyRank>listLastWeeklyRank = this._access.Select<UDT.WeeklyRank>();
+            List<UDT.WeeklyRank>listLastWeeklyRank = this._access.Select<UDT.WeeklyRank>(condition);
 
             foreach (UDT.WeeklyRank rank in listLastWeeklyRank)
             {

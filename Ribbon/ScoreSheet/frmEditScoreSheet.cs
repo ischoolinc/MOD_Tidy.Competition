@@ -485,7 +485,7 @@ namespace Ischool.Tidy_Competition
 
                     data.CheckedBy = tbxCheckAccount.Text.Trim();
                 }
-                if (data.CheckedTime.ToString("yyyy/MM/dd hh:mm") != lbCheckTime.Text.Trim() /*&& data.CheckedTime.ToString("yyyy/MM/dd") != "0001/01/01"*/)
+                if (data.CheckedTime.ToString("yyyy/MM/dd hh:mm") != lbCheckTime.Text.Trim() && !string.IsNullOrEmpty(lbCheckTime.Text))
                 {
                     logs.AppendLine(string.Format("原查核時間「{0}」變更為「{1}」", data.CheckedTime.ToString("yyyy/MM/dd hh:mm"), lbCheckTime.Text.Trim()));
 

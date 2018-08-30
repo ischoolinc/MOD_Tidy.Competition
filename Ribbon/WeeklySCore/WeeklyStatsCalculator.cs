@@ -70,6 +70,7 @@ SELECT
     , pc_belong.ref_class_id
     , standard.points
     , score_sheet.create_time
+    , score_sheet.uid
 FROM
     $ischool.tidy_competition.score_sheet AS score_sheet
     LEFT OUTER JOIN $ischool.tidy_competition.place AS place
@@ -90,6 +91,7 @@ FROM
             QueryHelper qh = new QueryHelper();
             DataTable dt = qh.Select(sql);
 
+            List<string> listScoreSheetID = new List<string>();
             foreach (DataRow row in dt.Rows)
             {
                 if (this.dicClassCalculatorByID.ContainsKey("" + row["ref_class_id"]))
@@ -97,12 +99,16 @@ FROM
                     ScoreItem item = new ScoreItem();
                     item.AreaID = "" + row["ref_area_id"];
                     item.ClassID = "" + row["ref_class_id"];
-                    item.Score = int.Parse("" + row["points"]);
+                    item.Score = ("" + row["points"]) == "" ? 0 : int.Parse("" + row["points"]);
                     item.OccurDate = "" + row["create_time"];
 
                     this.dicClassCalculatorByID[item.ClassID].Add(item);
+                    listScoreSheetID.Add("" + row["uid"]);
                 }
             }
+
+            // 評分紀錄資料快照
+            SnapshotData.SnapshotScoreSheet(listScoreSheetID);
         }
 
         public void Execute()

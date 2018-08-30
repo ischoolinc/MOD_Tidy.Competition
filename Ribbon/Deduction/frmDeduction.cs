@@ -85,6 +85,8 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadItemDgv(string areaID)
         {
+            this.SuspendLayout();
+
             dgvItem.Rows.Clear();
             // 取得扣分物件資料
             List<UDT.DeDuctionItem> listItem = this._access.Select<UDT.DeDuctionItem>(string.Format("ref_area_id = {0}", areaID));
@@ -101,10 +103,14 @@ namespace Ischool.Tidy_Competition
 
                 dgvItem.Rows.Add(dgvrow);
             }
+
+            this.ResumeLayout();
         }
 
         private void ReloadStandardDgv(string areaID)
         {
+            this.SuspendLayout();
+
             dgvStandard.Rows.Clear();
             // 取得扣分項目資料
             List<UDT.DeDuctionStandard> listStandard = this._access.Select<UDT.DeDuctionStandard>(string.Format("ref_area_id = {0}", areaID));
@@ -122,6 +128,8 @@ namespace Ischool.Tidy_Competition
 
                 dgvStandard.Rows.Add(dgvrow);
             }
+
+            this.ResumeLayout(false);
         }
 
         private void cbxArea_SelectedIndexChanged(object sender, EventArgs e)

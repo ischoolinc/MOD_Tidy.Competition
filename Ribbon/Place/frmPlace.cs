@@ -74,6 +74,8 @@ namespace Ischool.Tidy_Competition
 
         private void ReloadDataGridView()
         {
+            this.SuspendLayout();
+
             this._isValueChange = false;
             string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
             // 取得區域位置資料
@@ -97,6 +99,8 @@ namespace Ischool.Tidy_Competition
 
                 dataGridViewX1.Rows.Add(dgvrow);
             }
+
+            this.ResumeLayout();
         }
 
         private void cbxArea_SelectedIndexChanged(object sender, EventArgs e)
