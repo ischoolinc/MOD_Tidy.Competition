@@ -35,13 +35,17 @@ namespace Ischool.Tidy_Competition
             #region Init Area
             {
                 // 取得區域資料
-                List<UDT.Area> listArea = this._access.Select<UDT.Area>("enabled = true");
+                List<UDT.Area> listArea = this._access.Select<UDT.Area>(/*"enabled = true"*/);
+
+                cbxArea.Items.Add("--全部--");
+                this._dicAreaByName.Add("--全部--", null);
+
                 foreach (UDT.Area data in listArea)
                 {
                     cbxArea.Items.Add(data.Name);
                     this._dicAreaByName.Add(data.Name, data);
                 }
-                if (cbxArea.Items.Count > 0)
+                if (cbxArea.Items.Count > 1)
                 {
                     cbxArea.SelectedIndex = 0;
                 }
@@ -56,13 +60,17 @@ namespace Ischool.Tidy_Competition
             #region Init Period
             {
                 // 取得時段資料
-                List<UDT.Period> listPeriod = this._access.Select<UDT.Period>();
+                List<UDT.Period> listPeriod = this._access.Select<UDT.Period>(/*"enabled = true"*/);
+
+                cbxPeriod.Items.Add("--全部--");
+                this._dicPeriodByName.Add("--全部--", null);
+
                 foreach (UDT.Period data in listPeriod)
                 {
                     cbxPeriod.Items.Add(data.Name);
                     this._dicPeriodByName.Add(data.Name,data);
                 }
-                if (cbxPeriod.Items.Count > 0)
+                if (cbxPeriod.Items.Count > 1)
                 {
                     cbxPeriod.SelectedIndex = 0;
                 }
@@ -112,8 +120,8 @@ namespace Ischool.Tidy_Competition
 
             string schoolYear = lbSchoolYear.Text;
             string semester = lbSemester.Text;
-            string periodID = this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID;
-            string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
+            string periodID = this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()] == null ? "" :this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID;
+            string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()] == null ? "" : this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
             string date = dateTimeInput1.Value.ToString("yyyy/MM/dd");
 
             DataTable dt = DAO.ScoreSheet.GetScoreSheet(schoolYear, semester, periodID, areaID, date);
@@ -125,6 +133,8 @@ namespace Ischool.Tidy_Competition
                 dgvrow.CreateCells(dataGridViewX1);
 
                 int col = 0;
+                dgvrow.Cells[col++].Value = "" + row["area_name"];
+                dgvrow.Cells[col++].Value = "" + row["period_name"];
                 dgvrow.Cells[col++].Value = "" + row["place_name"];
                 dgvrow.Cells[col++].Value = "" + row["class_name"];
                 dgvrow.Cells[col++].Value = "" + row["item_name"];

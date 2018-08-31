@@ -397,41 +397,41 @@ namespace Ischool.Tidy_Competition
                 List<UDT.ScoreSheet> listUpdateData = this._access.Select<UDT.ScoreSheet>(string.Format("uid = {0}", this._row["uid"]));
                 UDT.ScoreSheet data = listUpdateData[0];
 
-                string periodName = this._dicPeriodByID.ContainsKey("" + data.RefPeriodID) ? this._dicPeriodByID["" + data.RefPeriodID].Name : "";
-                string placeName = this._dicPlaceByID.ContainsKey("" + data.RefPlaceID) ? this._dicPlaceByID["" + data.RefPlaceID].Name : "";
-                string itemName = this._dicItemByID.ContainsKey("" + data.RefDeductionItemID) ? this._dicItemByID["" + data.RefDeductionItemID].Name : "";
-                string standardName = this._dicStandardByID.ContainsKey("" + data.RefDeductionStandardID) ? this._dicStandardByID["" + data.RefDeductionStandardID].Name : "";
+                string orgPeriodName = this._dicPeriodByID.ContainsKey("" + data.RefPeriodID) ? this._dicPeriodByID["" + data.RefPeriodID].Name : "";
+                string orgPlaceName = this._dicPlaceByID.ContainsKey("" + data.RefPlaceID) ? this._dicPlaceByID["" + data.RefPlaceID].Name : "";
+                string orgItemName = this._dicItemByID.ContainsKey("" + data.RefDeductionItemID) ? this._dicItemByID["" + data.RefDeductionItemID].Name : "";
+                string orgStandardName = this._dicStandardByID.ContainsKey("" + data.RefDeductionStandardID) ? this._dicStandardByID["" + data.RefDeductionStandardID].Name : "";
                 // LOG
                 StringBuilder logs = new StringBuilder(string.Format(
                     "管理員「{0}」修改「'{1}'時段，'{2}'位置，'{3}'扣分物件，'{4}'扣分項目，'{5}'建立日期」的評分紀錄。內容如下:"
-                    , this._userName, periodName, placeName, itemName, standardName, data.CreateTime.ToString("yyyy/MM/dd")));
+                    , this._userName, orgPeriodName, orgPlaceName, orgItemName, orgStandardName, data.CreateTime.ToString("yyyy/MM/dd")));
 
                 #region 評分紀錄
                 // 時段
                 if (data.RefPeriodID != int.Parse(this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID))
                 {
-                    logs.AppendLine(string.Format("\n 原時段「{0}」修改為「{1}」", this._dicPeriodByID["" + data.RefPeriodID].Name, cbxPeriod.SelectedItem.ToString()));
+                    logs.AppendLine(string.Format("\n 原時段「{0}」修改為「{1}」", orgPeriodName, cbxPeriod.SelectedItem.ToString()));
 
                     data.RefPeriodID = int.Parse(this._dicPeriodByName[cbxPeriod.SelectedItem.ToString()].UID);
                 }
                 // 位置
                 if (data.RefPlaceID != int.Parse(this._dicPlaceByName[cbxPlace.SelectedItem.ToString()].UID))
                 {
-                    logs.AppendLine(string.Format("\n 原位置「{0}」修改為「{1}」", this._dicPlaceByID["" + data.RefPlaceID].Name, cbxPlace.SelectedItem.ToString()));
+                    logs.AppendLine(string.Format("\n 原位置「{0}」修改為「{1}」", orgPlaceName, cbxPlace.SelectedItem.ToString()));
 
                     data.RefPlaceID = int.Parse(this._dicPlaceByName[cbxPlace.SelectedItem.ToString()].UID);
                 }
                 // 扣分物件
                 if (data.RefDeductionItemID != int.Parse(this._dicItemByName[cbxItem.SelectedItem.ToString()].UID))
                 {
-                    logs.AppendLine(string.Format("原扣分物件「{0}」修改為「{1}」", this._dicItemByID["" + data.RefDeductionItemID].Name, cbxItem.SelectedItem.ToString()));
+                    logs.AppendLine(string.Format("原扣分物件「{0}」修改為「{1}」", orgItemName, cbxItem.SelectedItem.ToString()));
 
                     data.RefDeductionItemID = int.Parse(this._dicItemByName[cbxItem.SelectedItem.ToString()].UID);
                 }
                 // 扣分項目
                 if (data.RefDeductionStandardID != int.Parse(this._dicStandardByName[cbxStandard.SelectedItem.ToString()].UID))
                 {
-                    logs.AppendLine(string.Format("原扣分項目「{0}」修改為「{1}」", this._dicStandardByID["" + data.RefDeductionStandardID].Name, cbxStandard.SelectedItem.ToString()));
+                    logs.AppendLine(string.Format("原扣分項目「{0}」修改為「{1}」", orgStandardName, cbxStandard.SelectedItem.ToString()));
 
                     data.RefDeductionStandardID = int.Parse(this._dicStandardByName[cbxStandard.SelectedItem.ToString()].UID);
                 }

@@ -60,7 +60,15 @@ namespace Ischool.Tidy_Competition
                 int col = 0;
                 dgvrow.Cells[col++].Value = area.Enabled;
                 dgvrow.Cells[col++].Value = area.Name;
-                dgvrow.Cells[col++].Value = this._dicScoreRuleByID["" + area.RefRuleID].Name;
+                if (!this._dicScoreRuleByID.ContainsKey("" + area.RefRuleID))
+                {
+                    dgvrow.ErrorText = "原分數準則已被刪除，請重新設定!";
+                    col++;
+                }
+                else
+                {
+                    dgvrow.Cells[col++].Value = this._dicScoreRuleByID["" + area.RefRuleID].Name;
+                }
                 dgvrow.Cells[col++].Value = area.CreatedBy;
                 dgvrow.Tag = area;
 

@@ -53,20 +53,19 @@ FROM
         ON admin.account = score_sheet.account
     LEFT OUTER JOIN teacher
         ON teacher.id = admin.ref_teacher_id
-        
 WHERE
     score_sheet.school_year = {0}
     AND score_sheet.semester = {1}
     AND DATE_TRUNC('day',score_sheet.create_time) = '{2}'::TIMESTAMP
             ", schoolYear, semester, dateTime);
 
-            if (periodID != null)
+            if (periodID != "")
             {
                 sql += string.Format(@"
 AND score_sheet.ref_period_id = {0}
                 ", periodID);
             }
-            if (areaID != null)
+            if (areaID != "")
             {
                 sql += string.Format(@"
 AND place.ref_area_id = {0}
@@ -74,23 +73,12 @@ AND place.uid IS NOT NULL
                 ", areaID);
             }
 
-
-
-//            sql = string.Format(@"
-//SELECT
-//FROM
-//    $ischool.tidy_competition.score_sheet AS score_sheet
-//    LEFT OUTER JOIN $ischool.tidy_competition.place AS place
-//        ON score_sheet.ref_place_id = place.uid
-//WHERE
-//    score_sheet.school_year = {0}
-//    AND score_sheet.semester = {1}
-//    AND score_sheet.ref_period_id = {2}
-//    AND place.ref_area_id = {3}
-//    AND place.uid IS NOT NULL
-//    AND DATE_TRUNC('day',score_sheet.create_time) = '{4}'::TIMESTAMP
-//            ", schoolYear, semester, periodID, areaID, dateTime);
-
+            sql += @"
+ORDER BY
+    area.name
+    , period.name
+    , place.name
+";
             QueryHelper qh = new QueryHelper();
 
             return qh.Select(sql);

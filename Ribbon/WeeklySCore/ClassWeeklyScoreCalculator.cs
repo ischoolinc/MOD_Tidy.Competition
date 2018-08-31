@@ -54,7 +54,8 @@ FROM
         ON pc_belong.ref_place_id = place.uid
 WHERE
     pc_belong.ref_class_id = {0}
-            ",this.ClassID);
+    AND score_rule.uid IS NOT NULL
+            ", this.ClassID);
             QueryHelper qh = new QueryHelper();
             DataTable dt = qh.Select(sql);
 
