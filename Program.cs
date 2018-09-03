@@ -44,7 +44,7 @@ namespace Ischool.Tidy_Competition
         {
             #region Init UDT
             {
-                ConfigData cd = K12.Data.School.Configuration["整潔競賽模組載入設定1.0.0.3"];
+                ConfigData cd = K12.Data.School.Configuration["整潔競賽模組載入設定1.0.0.7"];
 
                 bool checkUDT = false;
                 string name = "整潔競賽UDT是否已載入";

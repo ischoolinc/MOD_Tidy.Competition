@@ -51,7 +51,7 @@ namespace Ischool.Tidy_Competition.UDT
         /// <summary>
         /// 扣分系統編號
         /// </summary>
-        [Field(Field = "ref_deduciotn_standard_id", Indexed = false)]
+        [Field(Field = "ref_deduction_standard_id", Indexed = false)]
         public int RefDeductionStandardID { get; set; }
 
         /// <summary>

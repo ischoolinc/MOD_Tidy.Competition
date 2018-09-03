@@ -45,6 +45,7 @@
             // 
             this.dataGridViewX1.AllowUserToAddRows = false;
             this.dataGridViewX1.AllowUserToDeleteRows = false;
+            this.dataGridViewX1.AllowUserToResizeColumns = false;
             this.dataGridViewX1.AllowUserToResizeRows = false;
             this.dataGridViewX1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -69,6 +70,7 @@
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewX1.MultiSelect = false;
             this.dataGridViewX1.Name = "dataGridViewX1";
+            this.dataGridViewX1.ReadOnly = true;
             this.dataGridViewX1.RowTemplate.Height = 24;
             this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewX1.Size = new System.Drawing.Size(587, 313);
@@ -79,16 +81,19 @@
             // 
             this.Column1.HeaderText = "名稱";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "每週總分";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "每日扣分上限";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             this.Column3.Width = 110;
             // 
             // Column4
@@ -96,11 +101,13 @@
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column4.HeaderText = "公式";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "建立者";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // btnLeave
             // 

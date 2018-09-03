@@ -25,7 +25,7 @@ namespace Ischool.Tidy_Competition
             this.AreaName = areaName;
             this.WeeklyBaseScore = weeklyBaseScore;
             this.ScoreRuleName = scoreRuleName;
-
+            this.DailyMaxScore = dailyMaxScore;
             this.dicDailyScores = new Dictionary<string, AreaDailyScoreCalculator>();
         }
 
@@ -49,6 +49,7 @@ namespace Ischool.Tidy_Competition
         public decimal CalculateWeeklyScore()
         {
             IScoreRule scoreRule = ScoreRuleFactory.Get(this.ScoreRuleName);
+            scoreRule.DailyMaxScore = this.DailyMaxScore;
 
             // 計算本 週總扣分數
             decimal totalDeduction = 0;

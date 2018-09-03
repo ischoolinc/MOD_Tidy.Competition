@@ -135,7 +135,7 @@ ORDER BY
 
             #region 儲存資料
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            string fileName = string.Format("{0}_{1}_秩序競賽第{2}週_排名結果", cbxSchoolYear.SelectedItem.ToString(), cbxSemester.SelectedItem.ToString(), cbxWeekNo.SelectedItem.ToString());
+            string fileName = string.Format("{0}_{1}_整潔競賽第{2}週_排名結果", cbxSchoolYear.SelectedItem.ToString(), cbxSemester.SelectedItem.ToString(), cbxWeekNo.SelectedItem.ToString());
             saveFileDialog.Title = fileName;
             saveFileDialog.FileName = string.Format("{0}.xlsx", fileName);
             saveFileDialog.Filter = "Excel (*.xlsx)|*.xlsx|所有檔案 (*.*)|*.*";

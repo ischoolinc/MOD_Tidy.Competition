@@ -52,7 +52,7 @@ namespace Ischool.Tidy_Competition
                 dataGridViewX1.Rows.Add(dgvrow);
             }
 
-            this.ResumeLayout();
+            this.ResumeLayout(false);
         }
 
         private void dataGridViewX1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
