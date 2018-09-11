@@ -35,6 +35,8 @@ namespace Ischool.Tidy_Competition
 <Feature Code=""14C345F3-A316-4F17-8A43-669FCA05C588"" Permission=""Execute""/>
 <Feature Code=""610854DA-7789-4C75-B082-55F32F537E34"" Permission=""Execute""/>
 <Feature Code=""22A139A4-C4D3-42D8-A239-62CB2E2691F9"" Permission=""Execute""/>
+<Feature Code=""A0AC6D1A-3FE1-4000-B058-55100F1E5B83"" Permission=""Execute""/>
+<Feature Code=""D060C5DD-21C1-414A-BA2F-02E4141BBC3D"" Permission=""Execute""/>
 </Permissions>
 ";
         public static string _roleID;
@@ -102,7 +104,7 @@ namespace Ischool.Tidy_Competition
 
             #region 整潔競賽
             {
-                // 秩序競賽模組頁面
+                // 整潔競賽模組頁面
                 MotherForm.AddPanel(TidyCompetitionPanel.Instance);
 
                 MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["人員設定"].Image = Properties.Resources.foreign_language_config_64;
@@ -193,24 +195,6 @@ namespace Ischool.Tidy_Competition
                 }
                 #endregion
 
-                #region 設定扣分資料: 扣分物件&扣分項目
-                {
-                    MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分資料"].Enable = Permissions.設定扣分資料權限;
-                    MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分資料"].Click += delegate
-                    {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmDeduction()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-                        
-                    };
-                }
-                #endregion
-
                 #region 設定時段
                 {
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定時段"].Enable = Permissions.設定時段權限;
@@ -224,7 +208,61 @@ namespace Ischool.Tidy_Competition
                         {
                             MsgBox.Show("此帳號沒有整潔競賽管理權限!");
                         }
-                        
+
+                    };
+                }
+                #endregion
+
+                #region 設定扣分資料: 扣分物件&扣分項目
+                {
+                    //MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分資料"].Enable = Permissions.設定扣分資料權限;
+                    //MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分資料"].Click += delegate
+                    //{
+                    //    if (DAO.Actor.Instance().CheckAdmin())
+                    //    {
+                    //        (new frmDeduction()).ShowDialog();
+                    //    }
+                    //    else
+                    //    {
+                    //        MsgBox.Show("此帳號沒有整潔競賽管理權限!");
+                    //    }
+
+                    //};
+                }
+                #endregion
+
+                #region 設定扣分物件
+                {
+                    MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分物件"].Enable = Permissions.設定扣分物件權限;
+                    MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分物件"].Click += delegate
+                    {
+                        if (DAO.Actor.Instance().CheckAdmin())
+                        {
+                            (new frmDeductionItem()).ShowDialog();
+                        }
+                        else
+                        {
+                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
+                        }
+
+                    };
+                }
+                #endregion
+
+                #region 設定扣分項目
+                {
+                    MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分項目"].Enable = Permissions.設定扣分項目權限;
+                    MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分項目"].Click += delegate
+                    {
+                        if (DAO.Actor.Instance().CheckAdmin())
+                        {
+                            (new frmDeductionStandard()).ShowDialog();
+                        }
+                        else
+                        {
+                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
+                        }
+
                     };
                 }
                 #endregion
@@ -326,7 +364,9 @@ namespace Ischool.Tidy_Competition
                 detail.Add(new RibbonFeature(Permissions.設定分數準則, "設定分數準則"));
                 detail.Add(new RibbonFeature(Permissions.設定區域位置, "設定區域位置"));
                 detail.Add(new RibbonFeature(Permissions.設定位置負責班級, "設定位置負責班級"));
-                detail.Add(new RibbonFeature(Permissions.設定扣分資料, "設定扣分資料"));
+                // detail.Add(new RibbonFeature(Permissions.設定扣分資料, "設定扣分資料"));
+                detail.Add(new RibbonFeature(Permissions.設定扣分物件, "設定扣分物件"));
+                detail.Add(new RibbonFeature(Permissions.設定扣分項目, "設定扣分項目"));
                 detail.Add(new RibbonFeature(Permissions.設定時段, "設定時段"));
                 detail.Add(new RibbonFeature(Permissions.設定評分員, "設定評分員"));
                 detail.Add(new RibbonFeature(Permissions.設定管理員, "設定管理員"));

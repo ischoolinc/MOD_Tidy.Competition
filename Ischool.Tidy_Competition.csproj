@@ -168,10 +168,22 @@
     <Compile Include="Ribbon\Aea\frmEditArea.Designer.cs">
       <DependentUpon>frmEditArea.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ribbon\Deduction\frmDeduction.cs">
+    <Compile Include="Ribbon\Deduction Item\frmDeductionItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ribbon\Deduction\frmDeduction.Designer.cs">
+    <Compile Include="Ribbon\Deduction Item\frmDeductionItem.Designer.cs">
+      <DependentUpon>frmDeductionItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Deduction Standard\frmDeductionStandard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Deduction Standard\frmDeductionStandard.Designer.cs">
+      <DependentUpon>frmDeductionStandard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Deduction%28功能已廢除%29\frmDeduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Deduction%28功能已廢除%29\frmDeduction.Designer.cs">
       <DependentUpon>frmDeduction.cs</DependentUpon>
     </Compile>
     <Compile Include="Ribbon\FormMode.cs" />
@@ -340,7 +352,13 @@
     <EmbeddedResource Include="Ribbon\Aea\frmEditArea.resx">
       <DependentUpon>frmEditArea.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ribbon\Deduction\frmDeduction.resx">
+    <EmbeddedResource Include="Ribbon\Deduction Item\frmDeductionItem.resx">
+      <DependentUpon>frmDeductionItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Deduction Standard\frmDeductionStandard.resx">
+      <DependentUpon>frmDeductionStandard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Deduction%28功能已廢除%29\frmDeduction.resx">
       <DependentUpon>frmDeduction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\PcBelong\frmPcBelong.resx">

@@ -53,6 +53,24 @@ namespace Ischool.Tidy_Competition
             }
         }
 
+        public static string 設定扣分物件 { get { return "A0AC6D1A-3FE1-4000-B058-55100F1E5B83"; } }
+        public static bool 設定扣分物件權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[設定扣分資料].Executable;
+            }
+        }
+
+        public static string 設定扣分項目 { get { return "D060C5DD-21C1-414A-BA2F-02E4141BBC3D"; } }
+        public static bool 設定扣分項目權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[設定扣分資料].Executable;
+            }
+        }
+
         public static string 設定時段 { get { return "7B6CC201-E823-4798-864C-A17DA6868229"; } }
         public static bool 設定時段權限
         {

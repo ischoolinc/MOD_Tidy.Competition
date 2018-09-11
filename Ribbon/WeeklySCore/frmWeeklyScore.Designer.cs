@@ -336,6 +336,8 @@
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.btnCalculate);
             this.DoubleBuffered = true;
+            this.MaximumSize = new System.Drawing.Size(440, 359);
+            this.MinimumSize = new System.Drawing.Size(440, 359);
             this.Name = "frmWeeklyScore";
             this.Text = "週統計";
             this.Load += new System.EventHandler(this.frmWeeklyScore_Load);

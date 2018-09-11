@@ -66,7 +66,7 @@
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.ReadOnly = true;
             this.dataGridViewX1.RowTemplate.Height = 24;
-            this.dataGridViewX1.Size = new System.Drawing.Size(361, 362);
+            this.dataGridViewX1.Size = new System.Drawing.Size(360, 363);
             this.dataGridViewX1.TabIndex = 0;
             this.dataGridViewX1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewX1_CellClick);
             // 
@@ -97,7 +97,7 @@
             this.btnadd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnadd.BackColor = System.Drawing.Color.Transparent;
             this.btnadd.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnadd.Location = new System.Drawing.Point(202, 380);
+            this.btnadd.Location = new System.Drawing.Point(201, 381);
             this.btnadd.Name = "btnadd";
             this.btnadd.Size = new System.Drawing.Size(90, 23);
             this.btnadd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -111,7 +111,7 @@
             this.btnLeave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLeave.BackColor = System.Drawing.Color.Transparent;
             this.btnLeave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnLeave.Location = new System.Drawing.Point(298, 380);
+            this.btnLeave.Location = new System.Drawing.Point(297, 381);
             this.btnLeave.Name = "btnLeave";
             this.btnLeave.Size = new System.Drawing.Size(75, 23);
             this.btnLeave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -123,11 +123,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(385, 415);
+            this.ClientSize = new System.Drawing.Size(384, 416);
             this.Controls.Add(this.btnLeave);
             this.Controls.Add(this.btnadd);
             this.Controls.Add(this.dataGridViewX1);
             this.DoubleBuffered = true;
+            this.MinimumSize = new System.Drawing.Size(400, 455);
             this.Name = "frmAdmin";
             this.Text = "設定管理員";
             this.Load += new System.EventHandler(this.frmAdmin_Load);
