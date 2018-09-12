@@ -23,7 +23,6 @@ C:\Users\User\source\repos\Loader(dev.sh_d)\Ischool.Tidy_Competition\obj\Debug\I
 C:\Users\User\source\repos\Loader(dev.sh_d)\Ischool.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.frmEditScoreSheet.resources
 D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\bin\Debug\Ischool.Tidy_Competition.dll
 D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\bin\Debug\Ischool.Tidy_Competition.pdb
-D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.csprojResolveAssemblyReference.cache
 D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.Properties.Resources.resources
 D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.frmAddAdmin.resources
 D:\Users\小金\Documents\github_ischool\MOD.Tidy_Competition\obj\Debug\Ischool.Tidy_Competition.frmAdmin.resources
