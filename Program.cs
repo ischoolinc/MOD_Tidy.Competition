@@ -9,6 +9,7 @@ using K12.Data.Configuration;
 using FISCA.Presentation;
 using FISCA.Permission;
 using FISCA.Presentation.Controls;
+using System.Reflection;
 
 namespace Ischool.Tidy_Competition
 {
@@ -101,6 +102,8 @@ namespace Ischool.Tidy_Competition
                 }
             }
             #endregion
+
+            LeaveDotsAndSlashesEscaped();
 
             #region 整潔競賽
             {
@@ -376,6 +379,27 @@ namespace Ischool.Tidy_Competition
                 #endregion
             }
             #endregion
+        }
+
+        private static void LeaveDotsAndSlashesEscaped()
+        {
+            var getSyntaxMethod =
+                typeof(UriParser).GetMethod("GetSyntax", BindingFlags.Static | BindingFlags.NonPublic);
+            //if (getSyntaxMethod == null)
+            //{
+            //    throw new MissingMethodException("UriParser", "GetSyntax");
+            //}
+
+            var uriParser = getSyntaxMethod.Invoke(null, new object[] { "https" });
+
+            var setUpdatableFlagsMethod =
+                uriParser.GetType().GetMethod("SetUpdatableFlags", BindingFlags.Instance | BindingFlags.NonPublic);
+            //if (setUpdatableFlagsMethod == null)
+            //{
+            //    throw new MissingMethodException("UriParser", "SetUpdatableFlags");
+            //}
+
+            setUpdatableFlagsMethod.Invoke(uriParser, new object[] { 0 });
         }
     }
 }
