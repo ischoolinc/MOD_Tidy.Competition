@@ -12,7 +12,6 @@ namespace Ischool.Tidy_Competition.DAO
     {
         private string _userAccount;
         private string _userName;
-        private bool _isAdmin;
         private static Actor _actor;
 
         private Actor()
@@ -39,28 +38,6 @@ WHERE
                 }
             }
             #endregion
-
-            #region 檢查使用者是否為管理員角色
-            {
-                string sql = string.Format(@"
-SELECT 
-    teacher.*
-FROM
-    teacher
-    LEFT OUTER JOIN _login
-        ON teacher.st_login_name = _login.login_name
-    LEFT OUTER JOIN _lr_belong
-        ON _login.id = _lr_belong._login_id
-WHERE
-    teacher.st_login_name = '{0}'
-    AND _lr_belong._role_id = {1}
-                ", this._userAccount, Program._roleID);
-
-                DataTable dt = qh.Select(sql);
-
-                this._isAdmin = dt.Rows.Count > 0;
-            }
-            #endregion
         }
 
         public static Actor Instance()
@@ -70,11 +47,6 @@ WHERE
                 _actor = new Actor();
             }
             return _actor;
-        }
-
-        public bool CheckAdmin()
-        {
-            return this._isAdmin;
         }
 
         /// <summary>

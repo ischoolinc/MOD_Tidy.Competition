@@ -132,14 +132,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["分數準則設定"]["設定分數準則"].Enable = Permissions.設定分數準則權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["分數準則設定"]["設定分數準則"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmScoreRule()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
+                        (new frmScoreRule()).ShowDialog();
                     };
                 }
                 #endregion
@@ -149,15 +142,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"]["設定區域類別"].Enable = Permissions.設定區域類別權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"]["設定區域類別"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmEditArea()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-                        
+                        (new frmEditArea()).ShowDialog();
                     };
                 }
                 #endregion
@@ -167,15 +152,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"]["設定區域位置"].Enable = Permissions.設定區域位置權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"]["設定區域位置"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmPlace()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-                        
+                        (new frmPlace()).ShowDialog();
                     };
                 }
                 #endregion
@@ -185,15 +162,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"]["設定位置負責班級"].Enable = Permissions.設定位置負責班級權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"]["設定位置負責班級"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmPcBelong()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-                        
+                        (new frmPcBelong()).ShowDialog();
                     };
                 }
                 #endregion
@@ -203,34 +172,8 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定時段"].Enable = Permissions.設定時段權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定時段"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmPeriod()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-
+                        (new frmPeriod()).ShowDialog();
                     };
-                }
-                #endregion
-
-                #region 設定扣分資料: 扣分物件&扣分項目
-                {
-                    //MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分資料"].Enable = Permissions.設定扣分資料權限;
-                    //MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分資料"].Click += delegate
-                    //{
-                    //    if (DAO.Actor.Instance().CheckAdmin())
-                    //    {
-                    //        (new frmDeduction()).ShowDialog();
-                    //    }
-                    //    else
-                    //    {
-                    //        MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                    //    }
-
-                    //};
                 }
                 #endregion
 
@@ -239,15 +182,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分物件"].Enable = Permissions.設定扣分物件權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分物件"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmDeductionItem()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-
+                        (new frmDeductionItem()).ShowDialog();
                     };
                 }
                 #endregion
@@ -257,15 +192,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分項目"].Enable = Permissions.設定扣分項目權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["評分設定"]["設定扣分項目"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmDeductionStandard()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-
+                        (new frmDeductionStandard()).ShowDialog();
                     };
                 }
                 #endregion
@@ -275,15 +202,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["人員設定"]["設定評分員"].Enable = Permissions.設定評分員權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["人員設定"]["設定評分員"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmScorer()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-                        
+                        (new frmScorer()).ShowDialog();
                     };
                 }
                 #endregion
@@ -293,15 +212,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["人員設定"]["設定管理員"].Enable = Permissions.設定管理員權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["人員設定"]["設定管理員"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmAdmin()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-                        
+                        (new frmAdmin()).ShowDialog();
                     };
                 }
                 #endregion
@@ -312,15 +223,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["管理評分紀錄"].Enable = Permissions.管理評分紀錄權限;
                     MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["管理評分紀錄"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmScoreSheet()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
-                        
+                        (new frmScoreSheet()).ShowDialog();
                     };
                 }
                 #endregion
@@ -330,14 +233,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"]["計算週排名"].Enable = Permissions.計算週排名權限;
                     MotherForm.RibbonBarItems["整潔競賽", "排名作業"]["計算排名"]["計算週排名"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmWeeklyScore()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
+                        (new frmWeeklyScore()).ShowDialog();
                     };
                 }
                 #endregion
@@ -347,14 +243,7 @@ namespace Ischool.Tidy_Competition
                     MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"]["週排名報表"].Enable = Permissions.週排名報表權限;
                     MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"]["週排名報表"].Click += delegate
                     {
-                        if (DAO.Actor.Instance().CheckAdmin())
-                        {
-                            (new frmWeeklyRankReport()).ShowDialog();
-                        }
-                        else
-                        {
-                            MsgBox.Show("此帳號沒有整潔競賽管理權限!");
-                        }
+                        (new frmWeeklyRankReport()).ShowDialog();
                     };
                 }
                 #endregion
