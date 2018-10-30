@@ -58,7 +58,7 @@ namespace Ischool.Tidy_Competition
         {
             get
             {
-                return FISCA.Permission.UserAcl.Current[設定扣分資料].Executable;
+                return FISCA.Permission.UserAcl.Current[設定扣分物件].Executable;
             }
         }
 
@@ -67,7 +67,7 @@ namespace Ischool.Tidy_Competition
         {
             get
             {
-                return FISCA.Permission.UserAcl.Current[設定扣分資料].Executable;
+                return FISCA.Permission.UserAcl.Current[設定扣分項目].Executable;
             }
         }
 
@@ -122,6 +122,15 @@ namespace Ischool.Tidy_Competition
             get
             {
                 return FISCA.Permission.UserAcl.Current[週排名報表].Executable;
+            }
+        }
+
+        public static string 整潔競賽評分表 { get { return "0632AE25-C8FA-4E80-AB4D-0C01C69D8A37"; } }
+        public static bool 整潔競賽評分表權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[整潔競賽評分表].Executable;
             }
         }
     }

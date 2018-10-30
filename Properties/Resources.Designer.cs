@@ -163,6 +163,16 @@ namespace Ischool.Tidy_Competition.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
+        internal static byte[] 整潔競賽評分表樣板 {
+            get {
+                object obj = ResourceManager.GetObject("整潔競賽評分表樣板", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
         internal static byte[] 週統計樣板 {
             get {
                 object obj = ResourceManager.GetObject("週統計樣板", resourceCulture);

@@ -253,6 +253,12 @@
     <Compile Include="Ribbon\WeeklyRankReport\frmWeeklyRankReport.Designer.cs">
       <DependentUpon>frmWeeklyRankReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ribbon\WeeklyScoreSheetReport\frmWeeklyScoreSheetReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\WeeklyScoreSheetReport\frmWeeklyScoreSheetReport.Designer.cs">
+      <DependentUpon>frmWeeklyScoreSheetReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ribbon\WeeklySCore\ClassWeeklyScoreCalculator.cs" />
     <Compile Include="Ribbon\WeeklySCore\AreaDailyScoreCalculator.cs" />
     <Compile Include="Ribbon\WeeklySCore\AreaWeeklyScoreCalculator.cs" />
@@ -336,6 +342,7 @@
     <None Include="Resources\sandglass_unlock_64.png" />
     <None Include="Resources\Report.png" />
     <None Include="Resources\network_lock_64.png" />
+    <None Include="Resources\整潔競賽評分表樣板.xlsx" />
     <None Include="Resources\週統計樣板.xlsx" />
   </ItemGroup>
   <ItemGroup>
@@ -393,6 +400,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\WeeklyRankReport\frmWeeklyRankReport.resx">
       <DependentUpon>frmWeeklyRankReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\WeeklyScoreSheetReport\frmWeeklyScoreSheetReport.resx">
+      <DependentUpon>frmWeeklyScoreSheetReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\WeeklySCore\frmWeeklyScore.resx">
       <DependentUpon>frmWeeklyScore.cs</DependentUpon>

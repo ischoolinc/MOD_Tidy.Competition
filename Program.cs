@@ -38,6 +38,7 @@ namespace Ischool.Tidy_Competition
 <Feature Code=""22A139A4-C4D3-42D8-A239-62CB2E2691F9"" Permission=""Execute""/>
 <Feature Code=""A0AC6D1A-3FE1-4000-B058-55100F1E5B83"" Permission=""Execute""/>
 <Feature Code=""D060C5DD-21C1-414A-BA2F-02E4141BBC3D"" Permission=""Execute""/>
+<Feature Code=""0632AE25-C8FA-4E80-AB4D-0C01C69D8A37"" Permission=""Execute""/>
 </Permissions>
 ";
         public static string _roleID;
@@ -248,6 +249,16 @@ namespace Ischool.Tidy_Competition
                 }
                 #endregion
 
+                #region 整潔競賽評分表
+                {
+                    MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"]["整潔競賽評分表"].Enable = Permissions.整潔競賽評分表權限;
+                    MotherForm.RibbonBarItems["整潔競賽", "評分管理/統計報表"]["報表"]["整潔競賽評分表"].Click += delegate
+                    {
+                        (new frmWeeklyScoreSheetReport()).ShowDialog();
+                    };
+                }
+                #endregion
+
                 #region 權限管理
 
                 Catalog detail = new Catalog();
@@ -265,6 +276,7 @@ namespace Ischool.Tidy_Competition
                 detail.Add(new RibbonFeature(Permissions.管理評分紀錄, "管理評分紀錄"));
                 detail.Add(new RibbonFeature(Permissions.計算週排名, "計算週排名"));
                 detail.Add(new RibbonFeature(Permissions.週排名報表, "週排名報表"));
+                detail.Add(new RibbonFeature(Permissions.整潔競賽評分表, "整潔競賽評分表"));
                 #endregion
             }
             #endregion

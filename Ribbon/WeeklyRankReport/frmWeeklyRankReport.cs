@@ -20,7 +20,6 @@ namespace Ischool.Tidy_Competition
     {
         private bool _initFinish = false;
 
-
         public frmWeeklyRankReport()
         {
             InitializeComponent();
