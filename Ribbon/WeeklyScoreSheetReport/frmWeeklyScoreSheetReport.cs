@@ -372,6 +372,8 @@ ORDER BY
                 int rowIndex = 6;
                 foreach (string className in dicClassDailyAreaScore.Keys)
                 {
+                    #region CopyRow
+                    
                     if (rowIndex == 6) // 第一行
                     {
                         wb.Worksheets[0].Cells.CopyRow(wb.Worksheets[0].Cells, 6, rowIndex);
@@ -384,6 +386,12 @@ ORDER BY
                     {
                         wb.Worksheets[0].Cells.CopyRow(wb.Worksheets[0].Cells, 7, rowIndex);
                     }
+                    // 清空複製的資料
+                    for (int colIndex = 1; colIndex <= totalCol;colIndex++)
+                    {
+                        wb.Worksheets[0].Cells.GetRow(rowIndex)[colIndex].Value = null;
+                    }
+                    #endregion
 
                     int col = 0;
 
