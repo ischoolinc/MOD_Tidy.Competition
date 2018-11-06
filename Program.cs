@@ -39,6 +39,7 @@ namespace Ischool.Tidy_Competition
 <Feature Code=""A0AC6D1A-3FE1-4000-B058-55100F1E5B83"" Permission=""Execute""/>
 <Feature Code=""D060C5DD-21C1-414A-BA2F-02E4141BBC3D"" Permission=""Execute""/>
 <Feature Code=""0632AE25-C8FA-4E80-AB4D-0C01C69D8A37"" Permission=""Execute""/>
+<Feature Code=""94FDFAD1-A4BB-4692-87FA-061C462DDE33"" Permission=""Execute""/>
 </Permissions>
 ";
         public static string _roleID;
@@ -128,12 +129,23 @@ namespace Ischool.Tidy_Competition
 
 
                 #region 設定
+
                 #region 設定分數準則
                 {
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["分數準則設定"]["設定分數準則"].Enable = Permissions.設定分數準則權限;
                     MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["分數準則設定"]["設定分數準則"].Click += delegate
                     {
                         (new frmScoreRule()).ShowDialog();
+                    };
+                }
+                #endregion
+
+                #region 設定負責區域
+                {
+                    MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"]["設定區域圖片"].Enable = Permissions.設定區域圖片權限;
+                    MotherForm.RibbonBarItems["整潔競賽", "基本設定"]["區域設定"]["設定區域圖片"].Click += delegate
+                    {
+                        (new ResponsibleArea()).ShowDialog();
                     };
                 }
                 #endregion
@@ -263,6 +275,7 @@ namespace Ischool.Tidy_Competition
 
                 Catalog detail = new Catalog();
                 detail = RoleAclSource.Instance["整潔競賽"]["功能按鈕"];
+                detail.Add(new RibbonFeature(Permissions.設定區域圖片, "設定區域圖片"));
                 detail.Add(new RibbonFeature(Permissions.設定區域類別, "設定區域類別"));
                 detail.Add(new RibbonFeature(Permissions.設定分數準則, "設定分數準則"));
                 detail.Add(new RibbonFeature(Permissions.設定區域位置, "設定區域位置"));

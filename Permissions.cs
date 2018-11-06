@@ -26,6 +26,15 @@ namespace Ischool.Tidy_Competition
             }
         }
 
+        public static string 設定區域圖片 { get { return "94FDFAD1-A4BB-4692-87FA-061C462DDE33"; } }
+        public static bool 設定區域圖片權限
+        {
+            get
+            {
+                return FISCA.Permission.UserAcl.Current[設定區域圖片].Executable;
+            }
+        }
+
         public static string 設定區域位置 { get { return "1DF4E352-3987-437A-B60E-A419194CF976"; } }
         public static bool 設定區域位置權限
         {

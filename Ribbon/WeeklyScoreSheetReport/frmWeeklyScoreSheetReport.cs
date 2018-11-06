@@ -311,12 +311,13 @@ ORDER BY
                 wb.Worksheets[0].Cells.CopyColumn(template.Worksheets[0].Cells, 5, col);
 
                 totalCol = col;
-            } 
+            }
             #endregion
 
-            // FillData
+            #region FillData
+
             wb.Worksheets[0].Name = "整潔競賽評分表";
-            wb.Worksheets[0].Cells[0, 0].Value = string.Format("國立彰化師大附工{0}學年度第{1}學期整潔競賽評分表",schoolYear,semester);
+            wb.Worksheets[0].Cells[0, 0].Value = string.Format("國立彰化師大附工{0}學年度第{1}學期整潔競賽評分表", schoolYear, semester);
             wb.Worksheets[0].Cells.Merge(0, 0, 1, totalCol);
             wb.Worksheets[0].Cells[2, 4].Value = string.Format("第{0}週", weekNo);
 
@@ -333,7 +334,7 @@ ORDER BY
                         foreach (string areaName in this._dicAreaDataByName.Keys)
                         {
                             DataRow row = this._dicAreaDataByName[areaName];
-                            wb.Worksheets[0].Cells[4, col].Value = "" + row["weekly_total"];
+                            wb.Worksheets[0].Cells[4, col].Value = row["weekly_total"] + "%";
                             wb.Worksheets[0].Cells[5, col++].Value = areaName;
                         }
                     }
@@ -345,7 +346,7 @@ ORDER BY
                         }
                     }
                 }
-            } 
+            }
             #endregion
 
             #region 填日期、填星期
@@ -360,7 +361,7 @@ ORDER BY
 
                     // 填星期
                     wb.Worksheets[0].Cells[4, col].Value = ParseDayOfWeek(date.DayOfWeek.ToString("d"));
-                    wb.Worksheets[0].Cells.Merge(4 , col, 1, areaCount);
+                    wb.Worksheets[0].Cells.Merge(4, col, 1, areaCount);
 
                     col += areaCount;
                 }
@@ -373,7 +374,7 @@ ORDER BY
                 foreach (string className in dicClassDailyAreaScore.Keys)
                 {
                     #region CopyRow
-                    
+
                     if (rowIndex == 6) // 第一行
                     {
                         wb.Worksheets[0].Cells.CopyRow(wb.Worksheets[0].Cells, 6, rowIndex);
@@ -387,7 +388,7 @@ ORDER BY
                         wb.Worksheets[0].Cells.CopyRow(wb.Worksheets[0].Cells, 7, rowIndex);
                     }
                     // 清空複製的資料
-                    for (int colIndex = 1; colIndex <= totalCol;colIndex++)
+                    for (int colIndex = 1; colIndex <= totalCol; colIndex++)
                     {
                         wb.Worksheets[0].Cells.GetRow(rowIndex)[colIndex].Value = null;
                     }
@@ -411,7 +412,7 @@ ORDER BY
                                 if (dicClassDailyAreaScore[className][date].ContainsKey(_areaName))// 有區域資料
                                 {
                                     int points = int.Parse("" + dicClassDailyAreaScore[className][date][_areaName]["points"]);
-                                    wb.Worksheets[0].Cells[rowIndex, col++].Value = string.Format("-{0}",points);
+                                    wb.Worksheets[0].Cells[rowIndex, col++].Value = string.Format("-{0}", points);
 
                                     if (!dicTotalScoreByArea.ContainsKey(_areaName))
                                     {
@@ -427,9 +428,9 @@ ORDER BY
                         }
                         else
                         {
-                            col+= areaCount;
+                            col += areaCount;
                         }
-                        
+
                     }
 
                     // 分區小計
@@ -437,7 +438,7 @@ ORDER BY
                     {
                         if (dicTotalScoreByArea.ContainsKey(areaName))
                         {
-                            wb.Worksheets[0].Cells[rowIndex, col++].Value = string.Format("-{0}%", dicTotalScoreByArea[areaName]);
+                            wb.Worksheets[0].Cells[rowIndex, col++].Value = string.Format("-{0}", dicTotalScoreByArea[areaName]);
                         }
                         else
                         {
@@ -460,6 +461,8 @@ ORDER BY
                     rowIndex++;
                 }
             }
+            #endregion 
+
             #endregion
 
             #region 儲存資料

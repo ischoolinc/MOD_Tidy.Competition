@@ -75,3 +75,4 @@ D:\Users\小金\Documents\github_ischool\MOD_Tidy.Competition\obj\Debug\Ischool.
 D:\Users\小金\Documents\github_ischool\MOD_Tidy.Competition\obj\Debug\Ischool.Tidy_Competition.dll
 D:\Users\小金\Documents\github_ischool\MOD_Tidy.Competition\obj\Debug\Ischool.Tidy_Competition.pdb
 D:\Users\小金\Documents\github_ischool\MOD_Tidy.Competition\obj\Debug\Ischool.Tidy_Competition.frmWeeklyScoreSheetReport.resources
+D:\Users\小金\Documents\github_ischool\MOD_Tidy.Competition\obj\Debug\Ischool.Tidy_Competition.ResponsibleArea.resources
