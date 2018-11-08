@@ -43,6 +43,7 @@ WHERE
             if (dt.Rows.Count > 0)
             {
                 XmlDocument doc = new XmlDocument();
+
                 doc.LoadXml("" + dt.Rows[0]["content"]);
                 XmlElement element = (XmlElement)doc.SelectNodes("Configurations/Configuration")[0];
                 string link = element.InnerText;
@@ -55,7 +56,16 @@ WHERE
         private void btnSave_Click(object sender, EventArgs e)
         {
             string sql = "";
-            string content = string.Format("<Configurations><Configuration Name=\"url\">{0}</Configuration></Configurations>", tbxLink.Text.Trim());
+            XmlDocument doc = new XmlDocument();
+            // 建立根節點
+            XmlElement configs = doc.CreateElement("Configurations");
+            doc.AppendChild(configs);
+            // 建立子節點
+            XmlElement config = doc.CreateElement("Configuration");
+            config.InnerText = tbxLink.Text.Trim();
+            configs.AppendChild(config);
+
+            string content = doc.OuterXml; //string.Format("<Configurations><Configuration Name=\"url\">{0}</Configuration></Configurations>", tbxLink.Text.Trim());
 
             if (this._configID == "")
             {
