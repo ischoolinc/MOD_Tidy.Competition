@@ -84,7 +84,12 @@ FROM
         AND score_sheet.semester = {1}
         AND date_trunc('day', score_sheet.create_time) <= '{2}'::TIMESTAMP
         AND date_trunc('day', score_sheet.create_time) >= '{3}'::TIMESTAMP
-        AND score_sheet.is_canceled = false
+        AND (
+            score_sheet.is_canceled = false
+            OR
+            score_sheet.is_canceled IS NULL    
+        )
+        
             ", this._schoolYear, this._semester, this._endDate, this._startDate); 
             #endregion
 
