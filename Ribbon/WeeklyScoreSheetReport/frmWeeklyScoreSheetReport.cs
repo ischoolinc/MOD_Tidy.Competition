@@ -231,7 +231,7 @@ ORDER BY
             #endregion
 
             DataTable dt = this._qh.Select(sql);
-            Dictionary<string, Dictionary<string, Dictionary<string, DataRow>>> dicClassDailyAreaScore = new Dictionary<string, Dictionary<string, Dictionary<string, DataRow>>>();
+            Dictionary<string, Dictionary<string, Dictionary<string, int>>> dicClassDailyAreaScore = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
             Dictionary<string, ClassRecord> dicClassRecordByName = new Dictionary<string, ClassRecord>();
 
             #region 資料整理
@@ -242,7 +242,7 @@ ORDER BY
                 #region 資料整理1
                 if (!dicClassDailyAreaScore.ContainsKey(className)) // 班級
                 {
-                    dicClassDailyAreaScore.Add(className, new Dictionary<string, Dictionary<string, DataRow>>());
+                    dicClassDailyAreaScore.Add(className, new Dictionary<string, Dictionary<string, int>>());
                 }
                 if (!string.IsNullOrEmpty("" + row["create_time"]))  // 有日期資料
                 {
@@ -250,17 +250,19 @@ ORDER BY
 
                     if (!dicClassDailyAreaScore[className].ContainsKey(createTime)) // 日期
                     {
-                        dicClassDailyAreaScore[className].Add(createTime, new Dictionary<string, DataRow>());
+                        dicClassDailyAreaScore[className].Add(createTime, new Dictionary<string, int>());
                     }
 
                     if (!string.IsNullOrEmpty("" + row["area_name"])) // 有區域類別資料
                     {
                         string areaName = "" + row["area_name"];
+                        int point = "" + row["points"] == "" ? 0 : int.Parse("" + row["points"]);
 
                         if (!dicClassDailyAreaScore[className][createTime].ContainsKey(areaName))
                         {
-                            dicClassDailyAreaScore[className][createTime].Add(areaName, row);
+                            dicClassDailyAreaScore[className][createTime].Add(areaName, 0);
                         }
+                        dicClassDailyAreaScore[className][createTime][areaName] += point;
                     }
                 }
                 #endregion
@@ -411,7 +413,8 @@ ORDER BY
                             {
                                 if (dicClassDailyAreaScore[className][date].ContainsKey(_areaName))// 有區域資料
                                 {
-                                    int points = int.Parse("" + dicClassDailyAreaScore[className][date][_areaName]["points"]);
+                                    //int points = int.Parse("" + dicClassDailyAreaScore[className][date][_areaName]["points"]);
+                                    int points = dicClassDailyAreaScore[className][date][_areaName];
                                     wb.Worksheets[0].Cells[rowIndex, col++].Value = string.Format("-{0}", points);
 
                                     if (!dicTotalScoreByArea.ContainsKey(_areaName))
