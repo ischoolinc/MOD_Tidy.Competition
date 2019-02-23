@@ -339,7 +339,7 @@
             this.MaximumSize = new System.Drawing.Size(440, 359);
             this.MinimumSize = new System.Drawing.Size(440, 359);
             this.Name = "frmWeeklyScore";
-            this.Text = "週統計";
+            this.Text = "計算週排名";
             this.Load += new System.EventHandler(this.frmWeeklyScore_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtStartTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndTime)).EndInit();

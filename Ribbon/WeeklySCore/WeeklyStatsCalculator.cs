@@ -20,6 +20,7 @@ namespace Ischool.Tidy_Competition
         private string _endDate;
         private string _userName = DAO.Actor.Instance().GetUserAccount();
         private AccessHelper _access = new AccessHelper();
+        private QueryHelper _qh = new QueryHelper();
         private Dictionary<string, ClassWeeklyScoreCalculator> dicClassCalculatorByID = new Dictionary<string, ClassWeeklyScoreCalculator>();
 
         public WeeklyStatsCalculator(string schoolYear, string semester, int weekNumber, string startDate, string endDate)
@@ -47,8 +48,7 @@ FROM
 WHERE
     class.grade_year IN (1,2,3)
 ";
-            QueryHelper qh = new QueryHelper();
-            DataTable dt = qh.Select(sql);
+            DataTable dt = this._qh.Select(sql);
 
             foreach (DataRow row in dt.Rows)
             {
@@ -93,8 +93,7 @@ FROM
             ", this._schoolYear, this._semester, this._endDate, this._startDate); 
             #endregion
 
-            QueryHelper qh = new QueryHelper();
-            DataTable dt = qh.Select(sql);
+            DataTable dt = this._qh.Select(sql);
 
             List<string> listScoreSheetID = new List<string>();
             foreach (DataRow row in dt.Rows)
@@ -113,7 +112,7 @@ FROM
             }
 
             // 評分紀錄資料快照
-            SnapshotData.SnapshotScoreSheet(listScoreSheetID);
+            SnapshotData.SnapshotScoreSheet(listScoreSheetID,this._schoolYear,this._semester,this._startDate,this._endDate);
         }
 
         public void Execute()

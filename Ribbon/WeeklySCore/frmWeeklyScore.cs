@@ -13,6 +13,7 @@ using K12.Data;
 using Aspose.Cells;
 using System.IO;
 using FISCA.Data;
+using FISCA.Presentation;
 
 namespace Ischool.Tidy_Competition
 {
@@ -32,9 +33,16 @@ namespace Ischool.Tidy_Competition
 
         private Dictionary<string, WeekNoDateRange> dicWeekNoData = new Dictionary<string, WeekNoDateRange>();
 
+        private BackgroundWorker bgw = new BackgroundWorker();
+
         public frmWeeklyScore()
         {
             InitializeComponent();
+
+            this.bgw.WorkerReportsProgress = true;
+            this.bgw.DoWork += new DoWorkEventHandler(this.bgw_DoWork);
+            this.bgw.ProgressChanged += new ProgressChangedEventHandler(this.bgw_ProgressChanged);
+            this.bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.bgw_RunWorkerCompleted);
         }
 
         private void frmWeeklyScore_Load(object sender, EventArgs e)
@@ -96,52 +104,93 @@ FROM
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            if (checkWeekNo())
+            if (checkWeekNo() && !this.bgw.IsBusy)
             {
-                string schoolYear = cbxSchoolYear.SelectedItem.ToString();
-                string semester = cbxSemester.SelectedItem.ToString();
-                int weekNo = int.Parse(tbxWeekNo.Text);
+                DataObject data = new DataObject();
+                data.SchoolYear = cbxSchoolYear.SelectedItem.ToString();
+                data.Semester = cbxSemester.SelectedItem.ToString();
+                data.WeekNo = int.Parse(tbxWeekNo.Text);
+                data.StartTime = dtStartTime.Value.ToString("yyyy/MM/dd");
+                data.EndTime = dtEndTime.Value.ToString("yyyy/MM/dd");
 
-                string startTime = dtStartTime.Value.ToString("yyyy/MM/dd");
-                string endTime = dtEndTime.Value.ToString("yyyy/MM/dd");
+                this.btnCalculate.Enabled = false;
 
-                string key = string.Format("{0}_{1}_{2}",schoolYear,semester,weekNo);
-
-                if (this.dicWeekNoData.ContainsKey(key))
-                {
-                    DialogResult dResult = MsgBox.Show(string.Format("「{0}」學年度、「{1}」學期、第「{2}」週排名作業以計算過! \n 計算日期區間為{3} ~ {4} \n 確定重新計算?"
-                        , schoolYear, semester, weekNo, this.dicWeekNoData[key].StarTime, this.dicWeekNoData[key].EndTime),"提醒",MessageBoxButtons.YesNo);
-                    if (dResult == DialogResult.Yes)
-                    {
-                        execute(schoolYear, semester, weekNo, startTime, endTime);
-                    }
-                }
-                else
-                {
-                    execute(schoolYear, semester, weekNo, startTime, endTime);
-                }
+                this.bgw.RunWorkerAsync(data);
             }
         }
 
-        private void execute(string schoolYear,string semester,int weekNo,string startTime,string endTime)
+        private void bgw_DoWork(object sender,DoWorkEventArgs e)
         {
+            DataObject data = (DataObject)e.Argument;
+            string schoolYear = data.SchoolYear;
+            string semester = data.Semester;
+            int weekNo = data.WeekNo;
+            string startTime = data.StartTime;
+            string endTime = data.EndTime;
+
+            string key = string.Format("{0}_{1}_{2}", schoolYear, semester, weekNo);
+
+            if (this.dicWeekNoData.ContainsKey(key))
+            {
+                DialogResult dResult = MsgBox.Show(string.Format("「{0}」學年度、「{1}」學期、第「{2}」週排名作業以計算過! \n 計算日期區間為{3} ~ {4} \n 確定重新計算?"
+                    , schoolYear, semester, weekNo, this.dicWeekNoData[key].StarTime, this.dicWeekNoData[key].EndTime), "提醒", MessageBoxButtons.YesNo);
+                if (dResult == DialogResult.Yes)
+                {
+                    execute(schoolYear, semester, weekNo, startTime, endTime, e);
+                }
+            }
+            else
+            {
+                execute(schoolYear, semester, weekNo, startTime, endTime, e);
+            }
+        }
+
+        private void bgw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            // 顯示進度條
+            MotherForm.SetStatusBarMessage("計算週排名中...", e.ProgressPercentage);
+        }
+
+        private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                MsgBox.Show(e.Error.Message);
+            }
+            else
+            {
+                this.btnCalculate.Enabled = true;
+                MotherForm.SetStatusBarMessage("計算週排名完成。");
+
+                DialogResult result = MsgBox.Show("週排名已計算完成，確定產出排名報表?", "提醒", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    DataTable dt = (DataTable)e.Result;
+                    print(dt);
+                }
+            }
+            
+        }
+
+        private void execute(string schoolYear,string semester,int weekNo,string startTime,string endTime, DoWorkEventArgs e)
+        {
+            this.bgw.ReportProgress(15);
             // 1. 統計當週各班成績
             WeeklyStatsCalculator calOne = new WeeklyStatsCalculator(schoolYear, semester, weekNo, startTime, endTime);
             calOne.Execute();
+            this.bgw.ReportProgress(30);
 
             // 2. 計算各年級班排名
             WeeklyRankCalculator calTwo = new WeeklyRankCalculator(schoolYear, semester, weekNo, startTime, endTime);
             calTwo.Execute();
+            this.bgw.ReportProgress(30);
 
             // 3. 找出當週排名
             DataTable dt = getWeeklyRank(schoolYear, semester, weekNo);
+            this.bgw.ReportProgress(30);
 
-            DialogResult result = MsgBox.Show("週排名已計算完成，確定產出排名報表?", "提醒", MessageBoxButtons.YesNo);
-
-            if (result == DialogResult.Yes)
-            {
-                print(dt);
-            }
+            e.Result = dt;
         }
 
         // 驗證週次欄位
@@ -280,5 +329,13 @@ ORDER BY
             this.Close();
         }
 
+        private class DataObject
+        {
+            public string SchoolYear;
+            public string Semester;
+            public int WeekNo;
+            public string StartTime;
+            public string EndTime;
+        }
     }
 }

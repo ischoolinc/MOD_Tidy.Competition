@@ -520,7 +520,7 @@ namespace Ischool.Tidy_Competition
 
                     data.CanceledReason = tbxCancelReason.Text.Trim();
                 }
-                if (data.CanceledTime.ToString("yyyy/MM/dd hh:mm") != lbCancelTime.Text.Trim() && data.CanceledTime.ToString("yyyy/MM/dd") != "0001/01/01")
+                if (data.CanceledTime.ToString("yyyy/MM/dd hh:mm") != lbCancelTime.Text.Trim() /*&& data.CanceledTime.ToString("yyyy/MM/dd") != "0001/01/01"*/)
                 {
                     logs.AppendLine(string.Format("原取消時間「{0}」變更為「{1}」", data.CanceledTime.ToString("yyyy/MM/dd hh:mm"), lbCancelTime.Text.Trim()));
 
