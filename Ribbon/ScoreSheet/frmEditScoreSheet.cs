@@ -163,8 +163,11 @@ namespace Ischool.Tidy_Competition
                 cbxPlace.Items.Clear();
                 this._dicPlaceByName.Clear();
                 this._dicPlaceByID.Clear();
+
+                string areaID = this._dicAreaByName[this.cbxArea.SelectedItem.ToString()].UID;
+
                 // 取得位置資料
-                List<UDT.Place> listPlace = this._access.Select<UDT.Place>(string.Format("ref_area_id = {0}","" + this._row["ref_area_id"]));
+                List<UDT.Place> listPlace = this._access.Select<UDT.Place>(string.Format("ref_area_id = {0}","" + areaID));
                 foreach (UDT.Place data in listPlace)
                 {
                     cbxPlace.Items.Add(data.Name);
@@ -565,6 +568,25 @@ namespace Ischool.Tidy_Competition
                 {
                     MsgBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void cbxPlace_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxPlace.SelectedItem == null)
+            {
+                if (cbxPlace.Items.Count > 0)
+                {
+                    errorProvider1.SetError(cbxPlace, "請選擇區域位置!");
+                }
+                else
+                {
+                    errorProvider1.SetError(cbxPlace, "請先設定區域位置!");
+                }
+            }
+            else
+            {
+                errorProvider1.SetError(cbxPlace, null);
             }
         }
     }

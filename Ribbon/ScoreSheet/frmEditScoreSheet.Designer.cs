@@ -267,6 +267,7 @@
             this.cbxPlace.Size = new System.Drawing.Size(144, 25);
             this.cbxPlace.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbxPlace.TabIndex = 11;
+            this.cbxPlace.SelectedIndexChanged += new System.EventHandler(this.cbxPlace_SelectedIndexChanged);
             // 
             // cbxItem
             // 
@@ -1089,7 +1090,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(2, 2);
-            this.ClientSize = new System.Drawing.Size(701, 620);
+            this.ClientSize = new System.Drawing.Size(718, 620);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLeave);
