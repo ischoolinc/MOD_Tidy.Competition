@@ -489,11 +489,11 @@ namespace Ischool.Tidy_Competition
 
                     data.CheckedBy = tbxCheckAccount.Text.Trim();
                 }
-                if (data.CheckedTime.ToString("yyyy/MM/dd hh:mm") != lbCheckTime.Text.Trim() && !string.IsNullOrEmpty(lbCheckTime.Text))
+                if (data.CheckedTime.ToString("yyyy/MM/dd hh:mm") != lbCheckTime.Text.Trim())
                 {
-                    logs.AppendLine(string.Format("原查核時間「{0}」變更為「{1}」", data.CheckedTime.ToString("yyyy/MM/dd hh:mm"), lbCheckTime.Text.Trim()));
+                    logs.AppendLine(string.Format("原查核時間「{0}」變更為「{1}」", (data.CheckedTime.ToString("yyyy/MM/dd") == "0001/01/01") ? "" : data.CheckedTime.ToString("yyyy/MM/dd hh:mm"), lbCheckTime.Text.Trim()));
 
-                    data.CheckedTime = DateTime.Parse(lbCheckTime.Text.Trim());
+                    data.CheckedTime = (lbCheckTime.Text.Trim() == "") ? new DateTime() : DateTime.Parse(lbCheckTime.Text.Trim());
                 }
 
                 #endregion
@@ -523,11 +523,11 @@ namespace Ischool.Tidy_Competition
 
                     data.CanceledReason = tbxCancelReason.Text.Trim();
                 }
-                if (data.CanceledTime.ToString("yyyy/MM/dd hh:mm") != lbCancelTime.Text.Trim() /*&& data.CanceledTime.ToString("yyyy/MM/dd") != "0001/01/01"*/)
+                if (data.CanceledTime.ToString("yyyy/MM/dd hh:mm") != lbCancelTime.Text.Trim())
                 {
-                    logs.AppendLine(string.Format("原取消時間「{0}」變更為「{1}」", data.CanceledTime.ToString("yyyy/MM/dd hh:mm"), lbCancelTime.Text.Trim()));
+                    logs.AppendLine(string.Format("原取消時間「{0}」變更為「{1}」", (data.CanceledTime.ToString("yyyy/MM/dd") == "0001/01/01") ? "" : data.CanceledTime.ToString("yyyy/MM/dd hh:mm"), lbCancelTime.Text.Trim()));
 
-                    data.CanceledTime = DateTime.Parse(lbCancelTime.Text.Trim());
+                    data.CanceledTime = lbCancelTime.Text.Trim() == "" ? new DateTime() : DateTime.Parse(lbCancelTime.Text.Trim());
                 }
 
                 #endregion
@@ -547,9 +547,9 @@ namespace Ischool.Tidy_Competition
                 }
                 if (data.LastUpdateTime != DateTime.Parse(lbUpdateTime.Text.Trim()))
                 {
-                    logs.AppendLine(string.Format("原修改者時間「{0}」變更為「{1}」", data.LastUpdateTime.ToString("yyyy/MM/dd hh:mm"), lbUpdateTime.Text.Trim()));
+                    logs.AppendLine(string.Format("原修改者時間「{0}」變更為「{1}」", (data.LastUpdateTime.ToString("yyyy/MM/dd") == "0001/01/01") ? "" : data.LastUpdateTime.ToString("yyyy/MM/dd hh:mm"), lbUpdateTime.Text.Trim()));
 
-                    data.LastUpdateTime = DateTime.Parse(lbUpdateTime.Text.Trim());
+                    data.LastUpdateTime = (lbUpdateTime.Text.Trim() == "") ? new DateTime() : DateTime.Parse(lbUpdateTime.Text.Trim());
                 }
 
                 #endregion
