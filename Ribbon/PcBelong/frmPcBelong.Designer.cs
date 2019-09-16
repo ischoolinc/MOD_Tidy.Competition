@@ -68,6 +68,7 @@
             this.cbxSchoolYear.Size = new System.Drawing.Size(65, 25);
             this.cbxSchoolYear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbxSchoolYear.TabIndex = 1;
+            this.cbxSchoolYear.SelectedIndexChanged += new System.EventHandler(this.cbxSchoolYear_SelectedIndexChanged);
             // 
             // labelX2
             // 

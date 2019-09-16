@@ -39,6 +39,7 @@ FROM
         ON area.uid = place.ref_area_id
     LEFT OUTER JOIN $ischool.tidy_competition.pc_belong AS pc_belong
         ON pc_belong.ref_place_id = place.uid
+        AND pc_belong.school_year = {0}
     LEFT OUTER JOIN class
         ON class.id = pc_belong.ref_class_id
     LEFT OUTER JOIN $ischool.tidy_competition.deduction_item AS deduction_item

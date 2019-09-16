@@ -21,6 +21,8 @@ namespace Ischool.Tidy_Competition
         private Dictionary<string, UDT.Place> _dicPlaceByName = new Dictionary<string, UDT.Place>();
         private Dictionary<string, DataRow> _dicClassRecordByName = new Dictionary<string, DataRow>();
         private bool _isValueChange = false;
+        private bool _initFinish;
+
         public frmPcBelong()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace Ischool.Tidy_Competition
 
         private void frmPcBelong_Load(object sender, EventArgs e)
         {
+            _initFinish = false;
             // 取得全校所有班級資料
             DataTable dt = getAllClassData();
             //List<ClassRecord> listClassRecord = Class.SelectAll();
@@ -67,8 +70,12 @@ namespace Ischool.Tidy_Competition
             else
             {
                 MsgBox.Show("請先設定區域類別資料!");
-            } 
+            }
             #endregion
+
+            ReloadDataGridView();
+
+            _initFinish = true;
         }
 
         private DataTable getAllClassData()
@@ -91,8 +98,18 @@ ORDER BY
             this.SuspendLayout();
 
             dataGridViewX1.Rows.Clear();
-            this._isValueChange = false;
+            _dicPlaceByName.Clear();
+            _isValueChange = false;
             string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
+
+            // 取得區域位置資料
+            {
+                List<UDT.Place> listPlace = this._access.Select<UDT.Place>(string.Format("ref_area_id = {0}", areaID));
+                foreach (UDT.Place place in listPlace)
+                {
+                    this._dicPlaceByName.Add(place.Name, place);
+                }
+            }
 
             // 取得位置負責班級資料
             DataTable dt = DAO.PcBelong.GetPcBelong(cbxSchoolYear.SelectedItem.ToString(),areaID);
@@ -219,17 +236,20 @@ ORDER BY
             }
         }
 
+        private void cbxSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_initFinish)
+            {
+                ReloadDataGridView();
+            }
+        }
+
         private void cbxArea_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this._dicPlaceByName.Clear();
-            string areaID = this._dicAreaByName[cbxArea.SelectedItem.ToString()].UID;
-            List<UDT.Place> listPlace = this._access.Select<UDT.Place>(string.Format("ref_area_id = {0}",areaID));
-            foreach (UDT.Place place in listPlace)
+            if (_initFinish)
             {
-                this._dicPlaceByName.Add(place.Name,place);
+                ReloadDataGridView();
             }
-
-            ReloadDataGridView();
         }
 
         private void btnLeave_Click(object sender, EventArgs e)
@@ -247,5 +267,6 @@ ORDER BY
                 this.Close();
             }
         }
+
     }
 }
