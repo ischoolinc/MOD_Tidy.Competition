@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FISCA.Data;
 using System.Data;
+using K12.Data;
 
 namespace Ischool.Tidy_Competition
 {
@@ -52,10 +53,11 @@ FROM
         ON place.ref_area_id = area.uid
     LEFT OUTER JOIN $ischool.tidy_competition.pc_belong AS pc_belong
         ON pc_belong.ref_place_id = place.uid
+        AND pc_belong.school_year = {1}
 WHERE
     pc_belong.ref_class_id = {0}
     AND score_rule.uid IS NOT NULL
-            ", this.ClassID);
+            ", this.ClassID, School.DefaultSchoolYear);
             QueryHelper qh = new QueryHelper();
             DataTable dt = qh.Select(sql);
 
