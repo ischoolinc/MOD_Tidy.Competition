@@ -77,6 +77,7 @@ FROM
         ON place.uid = score_sheet.ref_place_id
     LEFT OUTER JOIN $ischool.tidy_competition.pc_belong AS pc_belong
         ON pc_belong.ref_place_id = score_sheet.ref_place_id
+        AND pc_belong.school_year = {0}
     LEFT OUTER JOIN $ischool.tidy_competition.deduction_standard AS standard
         ON standard.uid = score_sheet.ref_deduction_standard_id
     WHERE
