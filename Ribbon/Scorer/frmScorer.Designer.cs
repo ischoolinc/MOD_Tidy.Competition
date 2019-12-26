@@ -74,10 +74,10 @@
             this.cbxSchoolYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbxSchoolYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSchoolYear.FormattingEnabled = true;
-            this.cbxSchoolYear.ItemHeight = 19;
+            this.cbxSchoolYear.ItemHeight = 23;
             this.cbxSchoolYear.Location = new System.Drawing.Point(68, 17);
             this.cbxSchoolYear.Name = "cbxSchoolYear";
-            this.cbxSchoolYear.Size = new System.Drawing.Size(70, 25);
+            this.cbxSchoolYear.Size = new System.Drawing.Size(70, 29);
             this.cbxSchoolYear.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbxSchoolYear.TabIndex = 1;
             this.cbxSchoolYear.SelectedIndexChanged += new System.EventHandler(this.cbxSchoolYear_SelectedIndexChanged);
@@ -92,7 +92,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewX1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewX1.ColumnHeadersHeight = 53;
+            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
@@ -123,6 +124,7 @@
             // 
             // Column1
             // 
+            this.Column1.FillWeight = 59.85038F;
             this.Column1.HeaderText = "年級";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -130,48 +132,62 @@
             // 
             // Column2
             // 
+            this.Column2.FillWeight = 104.2914F;
             this.Column2.HeaderText = "班級";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.Width = 105;
             // 
             // Column4
             // 
+            this.Column4.FillWeight = 103.2909F;
             this.Column4.HeaderText = "姓名";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
+            this.Column4.Width = 103;
             // 
             // Column3
             // 
+            this.Column3.FillWeight = 102.4151F;
             this.Column3.HeaderText = "學號";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            this.Column3.Width = 103;
             // 
             // dgvIdentity
             // 
+            this.dgvIdentity.FillWeight = 101.6486F;
             this.dgvIdentity.HeaderText = "身分";
+            this.dgvIdentity.Items.AddRange(new object[] {
+            "評分員",
+            "評分員幹部"});
             this.dgvIdentity.Name = "dgvIdentity";
             this.dgvIdentity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvIdentity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvIdentity.Width = 102;
             // 
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.FillWeight = 203.9747F;
             this.Column6.HeaderText = "登入帳號";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
             // Column8
             // 
+            this.Column8.FillWeight = 70.03816F;
             this.Column8.HeaderText = "代號";
             this.Column8.Name = "Column8";
-            this.Column8.Width = 80;
+            this.Column8.Width = 70;
             // 
             // Column7
             // 
+            this.Column7.FillWeight = 54.4909F;
             this.Column7.HeaderText = "";
             this.Column7.Name = "Column7";
             this.Column7.Text = null;
-            this.Column7.Width = 60;
+            this.Column7.Width = 55;
             // 
             // btnAdd
             // 
@@ -233,23 +249,24 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAddPending,
             this.btnRemovePending});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(184, 52);
             // 
             // btnAddPending
             // 
             this.btnAddPending.Name = "btnAddPending";
-            this.btnAddPending.Size = new System.Drawing.Size(158, 22);
+            this.btnAddPending.Size = new System.Drawing.Size(183, 24);
             this.btnAddPending.Text = "加入待處理學生";
             this.btnAddPending.Click += new System.EventHandler(this.btnAddPending_Click);
             // 
             // btnRemovePending
             // 
             this.btnRemovePending.Name = "btnRemovePending";
-            this.btnRemovePending.Size = new System.Drawing.Size(158, 22);
+            this.btnRemovePending.Size = new System.Drawing.Size(183, 24);
             this.btnRemovePending.Text = "清空待處理學生";
             this.btnRemovePending.Click += new System.EventHandler(this.btnRemovePending_Click);
             // 
@@ -286,7 +303,7 @@
             // 
             // frmScorer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 486);
             this.Controls.Add(this.lbTempStudentCount);
@@ -318,6 +335,11 @@
         private DevComponents.DotNetBar.ButtonX btnLeave;
         private DevComponents.DotNetBar.LabelX lbScorerCount;
         private DevComponents.DotNetBar.ButtonX btnSave;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem btnAddPending;
+        private System.Windows.Forms.ToolStripMenuItem btnRemovePending;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX lbTempStudentCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
@@ -326,10 +348,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn Column7;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem btnAddPending;
-        private System.Windows.Forms.ToolStripMenuItem btnRemovePending;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.LabelX lbTempStudentCount;
     }
 }

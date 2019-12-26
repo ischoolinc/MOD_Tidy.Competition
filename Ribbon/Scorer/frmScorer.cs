@@ -39,37 +39,37 @@ namespace Ischool.Tidy_Competition
             lbTempStudentCount.Text = string.Format("已將{0}位學生加入待處理", NLDPanels.Student.TempSource.Count);
 
             // Init dgv Identity Column
-            dgvIdentity.Items.Add("評分員");
-            dgvIdentity.Items.Add("評分員幹部");
+            // dgvIdentity.Items.Add("評分員");
+            // dgvIdentity.Items.Add("評分員幹部");
         }
 
         private void ReloadDataGridView()
         {
             this.SuspendLayout();
-
-            dataGridViewX1.Rows.Clear();
-            // 取得評分員資料
-            DataTable dt = DAO.Scorer.GetScorerDataBySchoolYear(cbxSchoolYear.SelectedItem.ToString());
-            lbScorerCount.Text = string.Format("評分員人數: {0}位",dt.Rows.Count);
-            foreach (DataRow row in dt.Rows)
             {
-                DataGridViewRow dgvrow = new DataGridViewRow();
-                dgvrow.CreateCells(dataGridViewX1);
+                dataGridViewX1.Rows.Clear();
+                // 取得評分員資料
+                DataTable dt = DAO.Scorer.GetScorerDataBySchoolYear(cbxSchoolYear.SelectedItem.ToString());
+                lbScorerCount.Text = string.Format("評分員人數: {0}位", dt.Rows.Count);
+                foreach (DataRow row in dt.Rows)
+                {
+                    DataGridViewRow dgvrow = new DataGridViewRow();
+                    dgvrow.CreateCells(dataGridViewX1);
 
-                int col = 0;
-                dgvrow.Cells[col++].Value = "" + row["grade_year"];
-                dgvrow.Cells[col++].Value = "" + row["class_name"];
-                dgvrow.Cells[col++].Value = "" + row["name"];
-                dgvrow.Cells[col++].Value = "" + row["student_number"];
-                dgvrow.Cells[col++].Value = ("" + row["is_leader"]) == "true" ? "評分員幹部" : "評分員";
-                dgvrow.Cells[col++].Value = "" + row["account"];
-                dgvrow.Cells[col++].Value = "" + row["code"];
-                dgvrow.Cells[col++].Value = "刪除";
-                dgvrow.Tag = row;  // 評分員資料  //"" + row["uid"];  評分員編號
+                    int col = 0;
+                    dgvrow.Cells[col++].Value = "" + row["grade_year"];
+                    dgvrow.Cells[col++].Value = "" + row["class_name"];
+                    dgvrow.Cells[col++].Value = "" + row["name"];
+                    dgvrow.Cells[col++].Value = "" + row["student_number"];
+                    dgvrow.Cells[col++].Value = ("" + row["is_leader"]) == "true" ? "評分員幹部" : "評分員";
+                    dgvrow.Cells[col++].Value = "" + row["account"];
+                    dgvrow.Cells[col++].Value = "" + row["code"];
+                    dgvrow.Cells[col++].Value = "刪除";
+                    dgvrow.Tag = row;  // 評分員資料  //"" + row["uid"];  評分員編號
 
-                dataGridViewX1.Rows.Add(dgvrow);
+                    dataGridViewX1.Rows.Add(dgvrow);
+                }
             }
-
             this.ResumeLayout();
         }
 
