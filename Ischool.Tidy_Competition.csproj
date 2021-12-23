@@ -336,6 +336,7 @@
     <Content Include="Library\SmartSchool.Customization.Data.dll" />
     <Content Include="Library\SmartSchool.Customization.PlugIn.dll" />
     <Content Include="Library\SmartSchool.ErrorReporting.dll" />
+    <Content Include="Resources\03.png" />
     <None Include="Resources\calc_fav_64.png" />
     <None Include="Resources\bank_config_128.png" />
     <None Include="Resources\presentation_a_config_64.png" />
