@@ -285,6 +285,13 @@
     <Compile Include="TidyCompetitionPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="tool\CompleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tool\CompleteForm.designer.cs">
+      <DependentUpon>CompleteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tool\DataGridViewExport.cs" />
     <Compile Include="UDT\Admin.cs" />
     <Compile Include="UDT\Area.cs" />
     <Compile Include="UDT\DeDuctionItem.cs" />
@@ -419,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TidyCompetitionPanel.resx">
       <DependentUpon>TidyCompetitionPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tool\CompleteForm.resx">
+      <DependentUpon>CompleteForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -195,5 +195,29 @@ namespace Ischool.Tidy_Competition
         {
             this.Close();
         }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewX1.Rows.Count > 0)
+            {
+                #region 匯出
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.FileName = string.Format("管理評分紀錄_{0}", DateTime.Now.ToString("yyyyMMdd_HHmm"));
+                saveFileDialog1.Filter = "Excel (*.xlsx)|*.xlsx";
+                if (saveFileDialog1.ShowDialog() != DialogResult.OK) return;
+
+                DataGridViewExport export = new DataGridViewExport(dataGridViewX1);
+                export.Save(saveFileDialog1.FileName);
+
+                if (new CompleteForm().ShowDialog() == DialogResult.Yes)
+                    System.Diagnostics.Process.Start(saveFileDialog1.FileName);
+                #endregion
+            }
+            else
+            {
+                MsgBox.Show("無資料可匯出");
+            }
+
+        }
     }
 }
